@@ -34,14 +34,17 @@ public class OrderCreateCommandHandler {
 	
 	private final OrderDataMapper orderDataMapper;
 	
+	private final ApplicationDomainEventPublisher applicationDomainEventPublisher;
+	
 	public OrderCreateCommandHandler(OrderDomainService orderDomainService, OrderRepository orderRepository,
 			CustomerRepository custormerRepository, RestaurantRepository restaurantRepository,
-			OrderDataMapper orderDataMapper) {
+			OrderDataMapper orderDataMapper, ApplicationDomainEventPublisher applicationDomainEventPublisher) {
 		this.orderDomainService = orderDomainService;
 		this.orderRepository = orderRepository;
 		this.custormerRepository = custormerRepository;
 		this.restaurantRepository = restaurantRepository;
 		this.orderDataMapper = orderDataMapper;
+		this.applicationDomainEventPublisher = applicationDomainEventPublisher;
 	}
 
 	@Transactional
