@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderTrackCommandHandler {
 
 	TrackOrderResponse trackOrder(TrackOrderQuery trackOrderQuery) {
-		
+		return null;
 	}
 	
 }
