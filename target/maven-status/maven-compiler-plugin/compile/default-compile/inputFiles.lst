@@ -1,0 +1,10 @@
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/domain/Lanche.java
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/domain/ports/LancheRepositoryPort.java
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/adapter/repository/LancheRepositoryAdapter.java
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/adapter/controllers/LancheController.java
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/adapter/infra/BeansConfig.java
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/domain/services/LancheService.java
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/adapter/entities/LancheEntity.java
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/adapter/repository/LancheRepository.java
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/FoodSystemApplication.java
+/home/eduardo/eclipse-workspace/food-system/src/main/java/com/fiap/soat/foodsystem/domain/ports/LancheServicePort.java

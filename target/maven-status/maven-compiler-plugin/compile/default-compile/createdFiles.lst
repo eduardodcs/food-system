@@ -1,0 +1,10 @@
+com/fiap/soat/foodsystem/adapter/repository/LancheRepositoryAdapter.class
+com/fiap/soat/foodsystem/domain/services/LancheService.class
+com/fiap/soat/foodsystem/adapter/repository/LancheRepository.class
+com/fiap/soat/foodsystem/domain/ports/LancheServicePort.class
+com/fiap/soat/foodsystem/domain/ports/LancheRepositoryPort.class
+com/fiap/soat/foodsystem/FoodSystemApplication.class
+com/fiap/soat/foodsystem/adapter/infra/BeansConfig.class
+com/fiap/soat/foodsystem/domain/Lanche.class
+com/fiap/soat/foodsystem/adapter/entities/LancheEntity.class
+com/fiap/soat/foodsystem/adapter/controllers/LancheController.class
