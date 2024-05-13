@@ -17,7 +17,7 @@ public class LancheEntity {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private BigDecimal valor;
+	private BigDecimal preco;
 	
 	public LancheEntity() {
 	}
@@ -46,12 +46,12 @@ public class LancheEntity {
 		this.descricao = descricao;
 	}
 
-	public BigDecimal getValor() {
-		return valor;
+	public BigDecimal getPreco() {
+		return preco;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 	
 	

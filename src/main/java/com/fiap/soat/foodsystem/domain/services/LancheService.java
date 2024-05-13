@@ -1,8 +1,10 @@
 package com.fiap.soat.foodsystem.domain.services;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.fiap.soat.foodsystem.domain.Lanche;
+import com.fiap.soat.foodsystem.domain.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.ports.LancheRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.LancheServicePort;
 
@@ -26,13 +28,12 @@ public class LancheService implements LancheServicePort {
 
 	@Override
 	public Lanche salvarLanche(Lanche lanche) {
-		// aplicar validações antes de salvar
 		return this.lancheRepositoryPort.salvarLanche(lanche);
 	}
 
 	@Override
 	public Lanche editarLanche(Lanche lanche) {
-		// aplicar validações antes de salvar
+		Lanche lancheOriginal = this.buscarLanchePorId(lanche.getId());
 		return this.lancheRepositoryPort.editarLanche(lanche);
 	}
 	
