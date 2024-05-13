@@ -1,25 +1,22 @@
-package com.fiap.soat.foodsystem.adapter.entities;
+package com.fiap.soat.foodsystem.adapter;
 
 import java.math.BigDecimal;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "Lanche")
-public class LancheEntity {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class LancheDTO {
+	
 	private Long id;
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String descricao;
+	@NotNull
 	private BigDecimal preco;
 	
-	public LancheEntity() {
+	public LancheDTO() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -55,5 +52,5 @@ public class LancheEntity {
 	}
 	
 	
-	
+
 }

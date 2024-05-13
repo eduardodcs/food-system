@@ -1,7 +1,6 @@
 package com.fiap.soat.foodsystem.adapter.repository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.fiap.soat.foodsystem.adapter.entities.LancheEntity;
 import com.fiap.soat.foodsystem.domain.Lanche;
+import com.fiap.soat.foodsystem.domain.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.ports.LancheRepositoryPort;
 
 @Component
@@ -30,7 +30,7 @@ public class LancheRepositoryAdapter implements LancheRepositoryPort {
 
 	@Override
 	public Lanche buscarLanchePorId(Long id) {
-		LancheEntity lancheEntity = this.lancheRepository.findById(id).orElse(null);
+		LancheEntity lancheEntity = this.lancheRepository.findById(id).orElseThrow(() -> new NotFoundException("Lanche não encontrado com o ID informado."));
 		return this.mapper.map(lancheEntity, Lanche.class);
 	}
 
@@ -43,8 +43,9 @@ public class LancheRepositoryAdapter implements LancheRepositoryPort {
 
 	@Override
 	public Lanche editarLanche(Lanche lanche) {
-		// TODO Auto-generated method stub
-		return null;
+		LancheEntity lancheEntity = mapper.map(lanche, LancheEntity.class);
+		LancheEntity lancheSaved = this.lancheRepository.save(lancheEntity);
+		return mapper.map(lancheSaved, Lanche.class);
 	}
 	
 	
