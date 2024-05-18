@@ -14,4 +14,6 @@ public interface LancheServicePort {
 	
 	Lanche editarLanche(Lanche lanche);
 	
+	void inativarLanche(Long id);
+	
 }
