@@ -1,4 +1,4 @@
-INSERT INTO LANCHE (NOME, DESCRICAO, PRECO) VALUES ('X Bacon', 'Pão, hambuguer, bacon, queijo', 29.9)
-INSERT INTO LANCHE (NOME, DESCRICAO, PRECO) VALUES ('X Salada', 'Pão, hambuguer, alface, tomate', 21.9)
-INSERT INTO LANCHE (NOME, DESCRICAO, PRECO) VALUES ('X Egg', 'Pão, hambuguer, queijo, queijo', 23.9)
-INSERT INTO LANCHE (NOME, DESCRICAO, PRECO) VALUES ('X Frango', 'Pão, frango, alface, queijo', 25.9)
+INSERT INTO LANCHE (NOME, DESCRICAO, PRECO, STATUS_ATIVO) SELECT 'X Bacon', 'Pão, hambuguer, bacon, queijo', 29.9, true WHERE 'X Bacon' NOT IN (SELECT NOME FROM LANCHE)
+INSERT INTO LANCHE (NOME, DESCRICAO, PRECO, STATUS_ATIVO) SELECT 'X Salada', 'Pão, hambuguer, alface, tomate', 21.9, true WHERE 'X Salada' NOT IN (SELECT NOME FROM LANCHE)
+INSERT INTO LANCHE (NOME, DESCRICAO, PRECO, STATUS_ATIVO) SELECT 'X Egg', 'Pão, hambuguer, queijo, queijo', 23.9, true WHERE 'X Egg' NOT IN (SELECT NOME FROM LANCHE)
+INSERT INTO LANCHE (NOME, DESCRICAO, PRECO, STATUS_ATIVO) SELECT 'X Frango', 'Pão, frango, alface, queijo', 25.9, true WHERE 'X Frango' NOT IN (SELECT NOME FROM LANCHE)

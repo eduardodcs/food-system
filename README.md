@@ -26,7 +26,11 @@ Fazer a build da imagem
 ```sh
 docker build -t food-system .
 ```
-Subir container
+Subir container (Profile default - Banco de dados em memória H2)
 ```sh
 docker run -d --name food-system -p 8080:8080 food-system
+```
+Subir docker-compose (Profile deploy - Banco de dados Postgress)
+```sh
+docker-compose up -d
 ```

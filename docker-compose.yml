@@ -1,0 +1,45 @@
+version: '3.9'
+
+volumes:
+   postgres_data: {}
+   
+services:
+   postgres:
+      image: postgres:13
+      container_name: food-system-db
+      environment:
+         POSTGRES_USER: systemdb_user
+         POSTGRES_PASSWORD: 1234
+         POSTGRES_DB: systemdb
+      ports: 
+         - "5432:5432"
+      volumes:
+         - ./postgres-data:/var/lib/postgres/data
+      networks:
+         - system-food-network
+      restart: unless-stopped
+      healthcheck:
+         test: ["CMD", "pg_isready", "-U", "systemdb_user", "-d", "systemdb"]
+         interval: 30s
+         timeout: 10s
+         retries: 5
+   food-system:
+      depends_on:
+         - postgres
+      image: food-system
+      ports:
+         - "8080:8080"
+      container_name: food-system-app
+      environment:
+         FS_DB_HOST: postgres:5432
+         FS_DB_USER: systemdb_user
+         FS_DB_PASSWORD: 1234
+         FS_DB_NAME: systemdb
+         SPRING_PROFILES_ACTIVE: deploy
+      networks:
+         - system-food-network
+      restart: always  
+      
+networks:
+   system-food-network:
+      driver: bridge

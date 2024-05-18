@@ -10,6 +10,7 @@ public class Lanche {
 	private String nome;
 	private String descricao;
 	private BigDecimal preco;
+	private boolean statusAtivo;
 	
 	public Lanche() {
 	}
@@ -44,6 +45,14 @@ public class Lanche {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+	
+	public void setStatusAtivo(boolean statusAtivo) {
+		this.statusAtivo = statusAtivo;
+	}
+	
+	public boolean isStatusAtivo() {
+		return statusAtivo;
 	}
 
 }
