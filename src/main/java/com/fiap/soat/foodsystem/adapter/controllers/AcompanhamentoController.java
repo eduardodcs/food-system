@@ -38,9 +38,9 @@ public class AcompanhamentoController {
 	@GetMapping
 	@Tag(name = "Acompanhamento")
 	@Operation(summary = "Buscar lista de acompanhamentos disponíveis")
-	public ResponseEntity<List<Acompanhamento>> buscarAcompanhamentos() {
+	public ResponseEntity<List<AcompanhamentoDTO>> buscarAcompanhamentos() {
 		List<Acompanhamento> listaAcompanhamento = this.acompanhamentoServicePort.buscarAcompanhamentos();
-		return ResponseEntity.ok(listaAcompanhamento.stream().map(acompanhamento -> this.mapper.map(acompanhamento, Acompanhamento.class)).collect(Collectors.toList()));
+		return ResponseEntity.ok(listaAcompanhamento.stream().map(acompanhamento -> this.mapper.map(acompanhamento, AcompanhamentoDTO.class)).collect(Collectors.toList()));
 	}
 	
 	@GetMapping("{id}")

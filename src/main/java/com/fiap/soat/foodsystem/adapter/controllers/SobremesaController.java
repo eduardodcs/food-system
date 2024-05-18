@@ -38,9 +38,9 @@ public class SobremesaController {
 	@GetMapping
 	@Tag(name = "Sobremesa")
 	@Operation(summary = "Buscar lista de sobremesas disponíveis")
-	public ResponseEntity<List<Sobremesa>> buscarSobremesas() {
+	public ResponseEntity<List<SobremesaDTO>> buscarSobremesas() {
 		List<Sobremesa> listaSobremesa = this.sobremesaServicePort.buscarSobremesas();
-		return ResponseEntity.ok(listaSobremesa.stream().map(sobremesa -> this.mapper.map(sobremesa, Sobremesa.class)).collect(Collectors.toList()));
+		return ResponseEntity.ok(listaSobremesa.stream().map(sobremesa -> this.mapper.map(sobremesa, SobremesaDTO.class)).collect(Collectors.toList()));
 	}
 	
 	@GetMapping("{id}")
