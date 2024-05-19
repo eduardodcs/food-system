@@ -1,18 +1,26 @@
-package com.fiap.soat.foodsystem.domain;
+package com.fiap.soat.foodsystem.adapter.entities;
 
 import java.math.BigDecimal;
 
-public class Lanche {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Sobremesa")
+public class SobremesaEntity {
 	
-	// aplicar conceitos do ValueObject
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String descricao;
 	private BigDecimal preco;
 	private boolean statusAtivo;
 	
-	public Lanche() {
+	public SobremesaEntity() {
 	}
 
 	public Long getId() {
@@ -54,5 +62,6 @@ public class Lanche {
 	public boolean isStatusAtivo() {
 		return statusAtivo;
 	}
+	
 
 }

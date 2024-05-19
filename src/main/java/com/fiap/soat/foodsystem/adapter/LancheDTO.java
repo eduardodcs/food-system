@@ -14,6 +14,7 @@ public class LancheDTO {
 	private String descricao;
 	@NotNull
 	private BigDecimal preco;
+	private boolean statusAtivo;
 	
 	public LancheDTO() {
 		// TODO Auto-generated constructor stub
@@ -49,6 +50,14 @@ public class LancheDTO {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+	
+	public void setStatusAtivo(boolean statusAtivo) {
+		this.statusAtivo = statusAtivo;
+	}
+	
+	public boolean isStatusAtivo() {
+		return statusAtivo;
 	}
 	
 	

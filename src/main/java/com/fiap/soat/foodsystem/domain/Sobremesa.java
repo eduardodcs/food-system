@@ -2,17 +2,15 @@ package com.fiap.soat.foodsystem.domain;
 
 import java.math.BigDecimal;
 
-public class Lanche {
-	
-	// aplicar conceitos do ValueObject
-	
+public class Sobremesa {
+
 	private Long id;
 	private String nome;
 	private String descricao;
 	private BigDecimal preco;
 	private boolean statusAtivo;
 	
-	public Lanche() {
+	public Sobremesa() {
 	}
 
 	public Long getId() {
@@ -46,13 +44,14 @@ public class Lanche {
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
-	
-	public void setStatusAtivo(boolean statusAtivo) {
-		this.statusAtivo = statusAtivo;
-	}
-	
+
 	public boolean isStatusAtivo() {
 		return statusAtivo;
 	}
 
+	public void setStatusAtivo(boolean statusAtivo) {
+		this.statusAtivo = statusAtivo;
+	}
+	
+	
 }

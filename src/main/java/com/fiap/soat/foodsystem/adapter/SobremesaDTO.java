@@ -1,18 +1,23 @@
-package com.fiap.soat.foodsystem.domain;
+package com.fiap.soat.foodsystem.adapter;
 
 import java.math.BigDecimal;
 
-public class Lanche {
-	
-	// aplicar conceitos do ValueObject
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public class SobremesaDTO {
 	
 	private Long id;
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String descricao;
+	@NotNull
 	private BigDecimal preco;
 	private boolean statusAtivo;
 	
-	public Lanche() {
+	public SobremesaDTO() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {

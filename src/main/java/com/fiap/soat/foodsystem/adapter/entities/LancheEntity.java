@@ -18,6 +18,7 @@ public class LancheEntity {
 	private String nome;
 	private String descricao;
 	private BigDecimal preco;
+	private boolean statusAtivo;
 	
 	public LancheEntity() {
 	}
@@ -54,6 +55,12 @@ public class LancheEntity {
 		this.preco = preco;
 	}
 	
+	public void setStatusAtivo(boolean statusAtivo) {
+		this.statusAtivo = statusAtivo;
+	}
 	
+	public boolean isStatusAtivo() {
+		return statusAtivo;
+	}
 	
 }

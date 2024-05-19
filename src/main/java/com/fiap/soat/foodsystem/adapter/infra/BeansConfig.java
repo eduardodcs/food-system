@@ -6,10 +6,16 @@ import org.springframework.context.annotation.Configuration;
 
 import com.fiap.soat.foodsystem.domain.ports.BebidaRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.BebidaServicePort;
+import com.fiap.soat.foodsystem.domain.services.BebidaService;
+import com.fiap.soat.foodsystem.domain.ports.AcompanhamentoRepositoryPort;
+import com.fiap.soat.foodsystem.domain.ports.AcompanhamentoServicePort;
 import com.fiap.soat.foodsystem.domain.ports.LancheRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.LancheServicePort;
-import com.fiap.soat.foodsystem.domain.services.BebidaService;
+import com.fiap.soat.foodsystem.domain.ports.SobremesaRepositoryPort;
+import com.fiap.soat.foodsystem.domain.ports.SobremesaServicePort;
+import com.fiap.soat.foodsystem.domain.services.AcompanhamentoService;
 import com.fiap.soat.foodsystem.domain.services.LancheService;
+import com.fiap.soat.foodsystem.domain.services.SobremesaService;
 
 @Configuration
 public class BeansConfig {
@@ -22,6 +28,16 @@ public class BeansConfig {
 	@Bean
 	public LancheServicePort lancheServicePort(LancheRepositoryPort lancheRepositoryPort) {
 		return new LancheService(lancheRepositoryPort);
+	}
+
+	@Bean
+	public SobremesaServicePort sobremesaServicePort(SobremesaRepositoryPort sobremesaRepositoryPort) {
+		return new SobremesaService(sobremesaRepositoryPort);
+	}
+	
+	@Bean
+	public AcompanhamentoServicePort acompanhamentoServicePort(AcompanhamentoRepositoryPort acompanhamentoRepositoryPort) {
+		return new AcompanhamentoService(acompanhamentoRepositoryPort);
 	}
 	
 	@Bean

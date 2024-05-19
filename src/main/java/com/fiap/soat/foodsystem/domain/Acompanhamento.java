@@ -2,9 +2,7 @@ package com.fiap.soat.foodsystem.domain;
 
 import java.math.BigDecimal;
 
-public class Lanche {
-	
-	// aplicar conceitos do ValueObject
+public class Acompanhamento {
 	
 	private Long id;
 	private String nome;
@@ -12,7 +10,7 @@ public class Lanche {
 	private BigDecimal preco;
 	private boolean statusAtivo;
 	
-	public Lanche() {
+	public Acompanhamento() {
 	}
 
 	public Long getId() {
@@ -53,6 +51,6 @@ public class Lanche {
 	
 	public boolean isStatusAtivo() {
 		return statusAtivo;
-	}
-
+	}	
+	
 }
