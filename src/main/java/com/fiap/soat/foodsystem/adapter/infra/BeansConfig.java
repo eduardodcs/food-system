@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.fiap.soat.foodsystem.domain.ports.BebidaRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.BebidaServicePort;
-import com.fiap.soat.foodsystem.domain.services.BebidaService;
 import com.fiap.soat.foodsystem.domain.ports.AcompanhamentoRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.AcompanhamentoServicePort;
 import com.fiap.soat.foodsystem.domain.ports.LancheRepositoryPort;
@@ -14,6 +13,7 @@ import com.fiap.soat.foodsystem.domain.ports.LancheServicePort;
 import com.fiap.soat.foodsystem.domain.ports.SobremesaRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.SobremesaServicePort;
 import com.fiap.soat.foodsystem.domain.services.AcompanhamentoService;
+import com.fiap.soat.foodsystem.domain.services.BebidaService;
 import com.fiap.soat.foodsystem.domain.services.LancheService;
 import com.fiap.soat.foodsystem.domain.services.SobremesaService;
 

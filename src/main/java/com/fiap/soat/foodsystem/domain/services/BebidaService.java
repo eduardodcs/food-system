@@ -2,6 +2,8 @@ package com.fiap.soat.foodsystem.domain.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fiap.soat.foodsystem.domain.Bebida;
 import com.fiap.soat.foodsystem.domain.ports.BebidaRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.BebidaServicePort;
