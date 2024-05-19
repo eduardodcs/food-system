@@ -5,12 +5,15 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.fiap.soat.foodsystem.adapter.entities.BebidaEntity;
 import com.fiap.soat.foodsystem.domain.Bebida;
 import com.fiap.soat.foodsystem.domain.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.ports.BebidaRepositoryPort;
 
+
+@Component
 public class BebidaRepositoryAdapter implements BebidaRepositoryPort {
 	
 	@Autowired
