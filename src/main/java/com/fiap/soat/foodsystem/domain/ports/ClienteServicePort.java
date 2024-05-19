@@ -2,14 +2,14 @@ package com.fiap.soat.foodsystem.domain.ports;
 
 import com.fiap.soat.foodsystem.domain.Cliente;
 
+import java.util.Optional;
+
 public interface ClienteServicePort {
     Cliente consultarClientePorCpf(String cpf);
 
-    Cliente consultarClientePorNome(String nome);
+    Cliente cadastrar(Cliente cliente);
 
-    void cadastrar(Cliente cliente);
+    Optional<Cliente> atualizarDados(Cliente cliente);
 
-    void atualizarDados(Cliente cliente);
-
-    void excluir(String cpf);
+    Optional<Boolean> excluir(String cpf);
 }

@@ -2,13 +2,14 @@ package com.fiap.soat.foodsystem.adapter.repository;
 
 import com.fiap.soat.foodsystem.adapter.entities.ClienteEntity;
 import com.fiap.soat.foodsystem.domain.Cliente;
-import com.fiap.soat.foodsystem.domain.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.ports.ClienteRepositoryPort;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
 
     @Autowired
@@ -19,27 +20,49 @@ public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
 
     @Override
     public Optional<Cliente> buscarPorCpf(String cpf) {
-        Optional<ClienteEntity> entity = this.clienteRepository.findById(cpf);
-        return entity.map(clienteEntity -> mapper.map(clienteEntity, Cliente.class));
-    }
-
-    @Override
-    public Optional<Cliente> buscarPorNome(String nome) {
+        if (localizarCliente(cpf).isPresent()) {
+            if (localizarCliente(cpf).get().isFlagAtivo()) {
+                return localizarCliente(cpf).map(clienteEntity -> mapper.map(clienteEntity, Cliente.class));
+            }
+            return Optional.empty();
+        }
         return Optional.empty();
     }
 
     @Override
     public void salvar(Cliente cliente) {
-
+        ClienteEntity entity = mapper.map(cliente, ClienteEntity.class);
+        entity.setFlagAtivo(true);
+        this.clienteRepository.save(entity);
     }
 
     @Override
-    public void atualizar(Cliente cliente) {
-
+    public boolean atualizar(Cliente cliente) {
+        boolean atualizou = false;
+        if (localizarCliente(cliente.getCpf()).isPresent()) {
+            ClienteEntity entity = mapper.map(cliente, ClienteEntity.class);
+            entity.setFlagAtivo(true);
+            this.clienteRepository.save(entity);
+            atualizou = true;
+        }
+        return atualizou;
     }
 
     @Override
-    public void excluir(String cpf) {
+    public boolean excluir(String cpf) {
+        boolean exclusaoRealizada = false;
+        // Se encontrado, realizar exclusão lógica
+        if (localizarCliente(cpf).isPresent()) {
+            localizarCliente(cpf).get().setFlagAtivo(false);
+            this.clienteRepository.save(localizarCliente(cpf).get());
+            exclusaoRealizada = true;
+        }
 
+        return exclusaoRealizada;
     }
+
+    private Optional<ClienteEntity> localizarCliente(String cpf) {
+        return this.clienteRepository.findById(cpf);
+    }
+
 }

@@ -4,7 +4,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@Data
 public class ClienteDTO {
     @NotBlank(message = "CPF é obrigatório")
     @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
@@ -17,7 +21,7 @@ public class ClienteDTO {
 
     @NotBlank(message = "Telefone não pode ser vazio")
     @NotNull(message = "Telefone não pode ser nulo")
-    @Size(min = 10, max = 11, message = "Telefone deve ter entre 10 e 11 caracteres")
+    @Size(min = 13, max = 14, message = "Telefone deve ter entre 13 e 14 caracteres")
     @Pattern(regexp = "\\(\\d{2}\\)\\d{4,5}-\\d{4}", message = "Telefone precisa estar no formato (XX)XXXXX-XXXX (9 dígitos) ou (XX)XXXX-XXXX (8 dígitos)")
     private String telefone;
 

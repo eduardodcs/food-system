@@ -15,5 +15,6 @@ public class ClienteEntity {
     private String nome;
     private String telefone;
     private String endereco;
+    private boolean flagAtivo;
 
 }
