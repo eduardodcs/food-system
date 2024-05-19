@@ -1,23 +1,19 @@
-package com.fiap.soat.foodsystem.adapter;
+package com.fiap.soat.foodsystem.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+public class Produto {
 
-public class SobremesaDTO {
-	
 	private Long id;
-	@NotBlank
 	private String nome;
-	@NotBlank
 	private String descricao;
-	@NotNull
 	private BigDecimal preco;
+	private Categoria categoria;
 	private boolean statusAtivo;
+	private LocalDateTime dataHoraCriacao;
 	
-	public SobremesaDTO() {
-		// TODO Auto-generated constructor stub
+	public Produto() {
 	}
 
 	public Long getId() {
@@ -51,13 +47,30 @@ public class SobremesaDTO {
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
 	
-	public void setStatusAtivo(boolean statusAtivo) {
-		this.statusAtivo = statusAtivo;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	
 	public boolean isStatusAtivo() {
 		return statusAtivo;
 	}
-
+	
+	public void setStatusAtivo(boolean statusAtivo) {
+		this.statusAtivo = statusAtivo;
+	}
+	
+	public LocalDateTime getDataHoraCriacao() {
+		return dataHoraCriacao;
+	}
+	
+	public void setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
+		this.dataHoraCriacao = dataHoraCriacao;
+	}
+	
+	
 }

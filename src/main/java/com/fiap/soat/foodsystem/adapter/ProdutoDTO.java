@@ -1,26 +1,33 @@
-package com.fiap.soat.foodsystem.adapter.entities;
+package com.fiap.soat.foodsystem.adapter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "Sobremesa")
-public class SobremesaEntity {
+public class ProdutoDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotBlank
 	private String nome;
+	
+	@NotBlank
 	private String descricao;
+	
+	@NotNull
 	private BigDecimal preco;
+	
+	@NotNull
+	private CategoriaDTO categoriaDTO;
+	
 	private boolean statusAtivo;
 	
-	public SobremesaEntity() {
+	private LocalDateTime dataHoraCriacao;
+	
+	public ProdutoDTO() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -54,14 +61,21 @@ public class SobremesaEntity {
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
-	
-	public void setStatusAtivo(boolean statusAtivo) {
-		this.statusAtivo = statusAtivo;
+
+	public CategoriaDTO getCategoriaDTO() {
+		return categoriaDTO;
 	}
 	
+	public void setCategoriaDTO(CategoriaDTO categoriaDTO) {
+		this.categoriaDTO = categoriaDTO;
+	}
+
 	public boolean isStatusAtivo() {
 		return statusAtivo;
 	}
-	
+
+	public void setStatusAtivo(boolean statusAtivo) {
+		this.statusAtivo = statusAtivo;
+	}
 
 }

@@ -4,18 +4,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fiap.soat.foodsystem.domain.ports.BebidaRepositoryPort;
-import com.fiap.soat.foodsystem.domain.ports.BebidaServicePort;
-import com.fiap.soat.foodsystem.domain.services.BebidaService;
-import com.fiap.soat.foodsystem.domain.ports.AcompanhamentoRepositoryPort;
-import com.fiap.soat.foodsystem.domain.ports.AcompanhamentoServicePort;
-import com.fiap.soat.foodsystem.domain.ports.LancheRepositoryPort;
-import com.fiap.soat.foodsystem.domain.ports.LancheServicePort;
-import com.fiap.soat.foodsystem.domain.ports.SobremesaRepositoryPort;
-import com.fiap.soat.foodsystem.domain.ports.SobremesaServicePort;
-import com.fiap.soat.foodsystem.domain.services.AcompanhamentoService;
-import com.fiap.soat.foodsystem.domain.services.LancheService;
-import com.fiap.soat.foodsystem.domain.services.SobremesaService;
+import com.fiap.soat.foodsystem.domain.ports.CategoriaRepositoryPort;
+import com.fiap.soat.foodsystem.domain.ports.CategoriaServicePort;
+import com.fiap.soat.foodsystem.domain.ports.ProdutoRepositoryPort;
+import com.fiap.soat.foodsystem.domain.ports.ProdutoServicePort;
+import com.fiap.soat.foodsystem.domain.services.CategoriaService;
+import com.fiap.soat.foodsystem.domain.services.ProdutoService;
 
 @Configuration
 public class BeansConfig {
@@ -26,23 +20,13 @@ public class BeansConfig {
 	}
 
 	@Bean
-	public LancheServicePort lancheServicePort(LancheRepositoryPort lancheRepositoryPort) {
-		return new LancheService(lancheRepositoryPort);
-	}
-
-	@Bean
-	public SobremesaServicePort sobremesaServicePort(SobremesaRepositoryPort sobremesaRepositoryPort) {
-		return new SobremesaService(sobremesaRepositoryPort);
+	public ProdutoServicePort produtoServicePort(ProdutoRepositoryPort produtoRepositoryPort, CategoriaServicePort categoriaServicePort) {
+		return new ProdutoService(produtoRepositoryPort, categoriaServicePort);
 	}
 	
 	@Bean
-	public AcompanhamentoServicePort acompanhamentoServicePort(AcompanhamentoRepositoryPort acompanhamentoRepositoryPort) {
-		return new AcompanhamentoService(acompanhamentoRepositoryPort);
-	}
-	
-	@Bean
-	public BebidaServicePort bebidaServicePort(BebidaRepositoryPort bebidaRepositoryPort) {
-		return new BebidaService(bebidaRepositoryPort);
+	public CategoriaServicePort categoriaServicePort(CategoriaRepositoryPort categoriaRepositoryPort) {
+		return new CategoriaService(categoriaRepositoryPort);
 	}
 	
 }

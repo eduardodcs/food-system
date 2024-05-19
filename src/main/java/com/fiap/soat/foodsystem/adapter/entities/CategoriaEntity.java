@@ -1,26 +1,29 @@
 package com.fiap.soat.foodsystem.adapter.entities;
 
-import java.math.BigDecimal;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Acompanhamento")
-public class AcompanhamentoEntity {
+@Table(name = "Categoria")
+public class CategoriaEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
+	@NotBlank
+	@Column(nullable = false, length = 255)
 	private String nome;
-	private String descricao;
-	private BigDecimal preco;
-	private boolean statusAtivo;
 	
-	public AcompanhamentoEntity() {
+	private boolean statusAtivo;
+
+	public CategoriaEntity() {
 	}
 
 	public Long getId() {
@@ -38,30 +41,14 @@ public class AcompanhamentoEntity {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public BigDecimal getPreco() {
-		return preco;
-	}
-
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
+	
+	public boolean isStatusAtivo() {
+		return statusAtivo;
 	}
 	
 	public void setStatusAtivo(boolean statusAtivo) {
 		this.statusAtivo = statusAtivo;
 	}
 	
-	public boolean isStatusAtivo() {
-		return statusAtivo;
-	}
 	
-
 }
