@@ -1,5 +1,8 @@
 package com.fiap.soat.foodsystem.adapter.infra;
 
+import com.fiap.soat.foodsystem.domain.ports.ClienteRepositoryPort;
+import com.fiap.soat.foodsystem.domain.ports.ClienteServicePort;
+import com.fiap.soat.foodsystem.domain.services.ClienteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +34,11 @@ public class BeansConfig {
 	}
 
 	@Bean
+	public ClienteServicePort clienteServicePort(ClienteRepositoryPort clienteRepositoryPort) {
+		return new ClienteService(clienteRepositoryPort);
+  }
+
+  @Bean
 	public SobremesaServicePort sobremesaServicePort(SobremesaRepositoryPort sobremesaRepositoryPort) {
 		return new SobremesaService(sobremesaRepositoryPort);
 	}
