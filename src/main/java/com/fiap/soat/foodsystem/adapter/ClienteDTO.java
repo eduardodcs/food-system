@@ -11,12 +11,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class ClienteDTO {
     @NotBlank(message = "CPF é obrigatório")
-    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
+    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 números")
     private String cpf;
 
     @NotBlank(message = "Nome não pode ser vazio")
     @NotNull(message = "Nome não pode ser nulo")
     @Size(min = 3, max = 80, message = "Nome deve ter entre 3 e 80 caracteres")
+    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "Nome deve conter apenas letras")
     private String nome;
 
     @NotBlank(message = "Telefone não pode ser vazio")
