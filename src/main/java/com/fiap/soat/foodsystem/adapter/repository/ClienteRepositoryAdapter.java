@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -30,10 +32,19 @@ public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
     }
 
     @Override
-    public void salvar(Cliente cliente) {
+    public String salvar(Cliente cliente) {
+        List<String> retorno = new ArrayList<>();
         ClienteEntity entity = mapper.map(cliente, ClienteEntity.class);
         entity.setFlagAtivo(true);
+        if (this.clienteRepository.existsById(cliente.getCpf())){
+            retorno.add("CPF já existente na base!");
+        }
+        if (this.clienteRepository.existsByEmail(cliente.getEmail())){
+            retorno.add("E-mail já existente na base!");
+        }
+
         this.clienteRepository.save(entity);
+        return retorno.isEmpty() ? "" : String.join("|", retorno);
     }
 
     @Override

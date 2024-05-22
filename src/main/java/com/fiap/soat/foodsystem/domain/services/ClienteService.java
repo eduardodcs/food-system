@@ -2,9 +2,9 @@ package com.fiap.soat.foodsystem.domain.services;
 
 import com.fiap.soat.foodsystem.common.exception.DomainException;
 import com.fiap.soat.foodsystem.domain.Cliente;
+import com.fiap.soat.foodsystem.domain.exception.ValidationException;
 import com.fiap.soat.foodsystem.domain.ports.ClienteRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.ClienteServicePort;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
@@ -23,10 +23,9 @@ public class ClienteService implements ClienteServicePort {
     }
 
     @Override
-    public Cliente cadastrar(Cliente cliente) {
+    public Optional<Cliente> cadastrar(Cliente cliente) {
         try {
-            repositoryPort.salvar(cliente);
-            return cliente;
+            return repositoryPort.salvar(cliente).isEmpty() ? Optional.of(cliente) : Optional.empty();
         } catch (Exception ex) {
             throw new DomainException("Não foi possível salvar o cliente", ex.getCause());
         }

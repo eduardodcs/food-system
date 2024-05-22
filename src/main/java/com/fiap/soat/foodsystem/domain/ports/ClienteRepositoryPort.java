@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface ClienteRepositoryPort {
     Optional<Cliente> buscarPorCpf(String cpf);
-    void salvar(Cliente cliente);
+    String salvar(Cliente cliente);
     boolean atualizar(Cliente cliente);
     boolean excluir(String cpf);
 }

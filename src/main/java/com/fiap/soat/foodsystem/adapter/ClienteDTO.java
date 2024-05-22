@@ -1,9 +1,6 @@
 package com.fiap.soat.foodsystem.adapter;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,5 +27,10 @@ public class ClienteDTO {
     @NotNull(message = "Endereço não pode ser nulo")
     @Size(min = 5, max = 80, message = "Endereço deve ter entre 5 e 80 caracteres")
     private String endereco;
+
+    @NotBlank(message = "E-mail não pode ser vazio")
+    @NotNull(message = "E-mail não pode ser nulo")
+    @Email(message = "E-mail precisa ser válido")
+    private String email;
 
 }
