@@ -6,12 +6,17 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 @NoArgsConstructor
 @Data
 public class ClienteDTO {
+    
+    private Long id;
+
     @NotBlank(message = "CPF é obrigatório")
-    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
+//    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
+    @CPF(message = "CPF inválido")
     private String cpf;
 
     @NotBlank(message = "Nome não pode ser vazio")

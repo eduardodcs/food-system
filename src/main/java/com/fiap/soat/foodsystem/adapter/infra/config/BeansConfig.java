@@ -3,6 +3,7 @@ package com.fiap.soat.foodsystem.adapter.infra.config;
 import com.fiap.soat.foodsystem.domain.ports.*;
 import com.fiap.soat.foodsystem.domain.services.CategoriaService;
 import com.fiap.soat.foodsystem.domain.services.ClienteService;
+import com.fiap.soat.foodsystem.domain.services.PedidoService;
 import com.fiap.soat.foodsystem.domain.services.ProdutoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -31,4 +32,9 @@ public class BeansConfig {
 		return new CategoriaService(categoriaRepositoryPort);
 	}
 
+	@Bean
+	public PedidoServicePort pedidoServicePort(PedidoRepositoryPort pedidoRepositoryPort) {
+		return new PedidoService(pedidoRepositoryPort);
+
+	}
 }

@@ -1,9 +1,8 @@
 package com.fiap.soat.foodsystem.adapter.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "Cliente")
@@ -11,7 +10,12 @@ import lombok.Data;
 public class ClienteEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @CPF
+    @Column(nullable = false, length = 11)
     private String cpf;
+    @Column(nullable = false)
     private String nome;
     private String telefone;
     private String endereco;
