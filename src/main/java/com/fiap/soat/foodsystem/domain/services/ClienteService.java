@@ -2,7 +2,6 @@ package com.fiap.soat.foodsystem.domain.services;
 
 import com.fiap.soat.foodsystem.common.exception.DomainException;
 import com.fiap.soat.foodsystem.domain.Cliente;
-import com.fiap.soat.foodsystem.domain.exception.ValidationException;
 import com.fiap.soat.foodsystem.domain.ports.ClienteRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.ClienteServicePort;
 

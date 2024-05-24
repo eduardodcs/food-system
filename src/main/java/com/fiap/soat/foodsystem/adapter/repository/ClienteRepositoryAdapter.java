@@ -36,15 +36,18 @@ public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
         List<String> retorno = new ArrayList<>();
         ClienteEntity entity = mapper.map(cliente, ClienteEntity.class);
         entity.setFlagAtivo(true);
-        if (this.clienteRepository.existsById(cliente.getCpf())){
-            retorno.add("CPF já existente na base!");
-        }
         if (this.clienteRepository.existsByEmail(cliente.getEmail())){
             retorno.add("E-mail já existente na base!");
         }
+        if (this.clienteRepository.existsByCpf(cliente.getCpf())) {
+            retorno.add("CPF já existente na base!");
+        }
 
-        this.clienteRepository.save(entity);
-        return retorno.isEmpty() ? "" : String.join("|", retorno);
+        if (retorno.isEmpty()) {
+            this.clienteRepository.save(entity);
+            return "";
+        }
+        return String.join("|", retorno);
     }
 
     @Override
