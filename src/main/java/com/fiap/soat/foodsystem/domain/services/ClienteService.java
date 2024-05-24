@@ -1,10 +1,9 @@
 package com.fiap.soat.foodsystem.domain.services;
 
 import com.fiap.soat.foodsystem.common.exception.DomainException;
-import com.fiap.soat.foodsystem.domain.Cliente;
+import com.fiap.soat.foodsystem.domain.model.Cliente;
 import com.fiap.soat.foodsystem.domain.ports.ClienteRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.ClienteServicePort;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 

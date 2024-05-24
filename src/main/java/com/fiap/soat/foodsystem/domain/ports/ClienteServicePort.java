@@ -1,6 +1,6 @@
 package com.fiap.soat.foodsystem.domain.ports;
 
-import com.fiap.soat.foodsystem.domain.Cliente;
+import com.fiap.soat.foodsystem.domain.model.Cliente;
 
 import java.util.Optional;
 
