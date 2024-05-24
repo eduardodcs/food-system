@@ -8,12 +8,19 @@ import jakarta.validation.constraints.NotNull;
 public class BebidaDTO {
 	
 	private Long id;
-	@NotBlank
+
+	@NotBlank (message = "Nome não pode ser vazio")
+	@NotNull(message = "Nome não pode ser nulo")
 	private String nome;
-	@NotBlank
+
+	@NotBlank (message = "Descrição não pode ser vazia")
+	@NotNull(message = "Descrição não pode ser nula")
 	private String descricao;
-	@NotNull
+
+	@NotBlank (message = "Preço não pode ser vazio")
+	@NotNull(message = "Preço não pode ser nulo")
 	private BigDecimal preco;
+
 	private boolean statusAtivo;
 	
 	public BebidaDTO() {
