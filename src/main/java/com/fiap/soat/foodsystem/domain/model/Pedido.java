@@ -17,6 +17,7 @@ public class Pedido {
     private BigDecimal valorTotalPedido;
     private String observacao;
     private LocalDateTime dataHoraCriacao;
+    private String qRCode;
 
     public Pedido() {
     }
@@ -75,6 +76,14 @@ public class Pedido {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public String getqRCode() {
+        return qRCode;
+    }
+
+    public void setqRCode(String qRCode) {
+        this.qRCode = qRCode;
     }
 
     public LocalDateTime getDataHoraCriacao() {

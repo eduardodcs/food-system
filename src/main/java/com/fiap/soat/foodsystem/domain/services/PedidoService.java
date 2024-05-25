@@ -4,6 +4,7 @@ import com.fiap.soat.foodsystem.common.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
 import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
 import com.fiap.soat.foodsystem.domain.model.Pedido;
+import com.fiap.soat.foodsystem.domain.ports.PagamentoServicePort;
 import com.fiap.soat.foodsystem.domain.ports.PedidoRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.PedidoServicePort;
 import jakarta.transaction.Transactional;
@@ -17,8 +18,11 @@ public class PedidoService implements PedidoServicePort {
 
     private PedidoRepositoryPort pedidoRepositoryPort;
 
-    public PedidoService(PedidoRepositoryPort pedidoRepositoryPort) {
+    private PagamentoServicePort pagamentoServicePort;
+
+    public PedidoService(PedidoRepositoryPort pedidoRepositoryPort, PagamentoServicePort pagamentoServicePort) {
         this.pedidoRepositoryPort = pedidoRepositoryPort;
+        this.pagamentoServicePort = pagamentoServicePort;
     }
 
     @Override
@@ -33,7 +37,9 @@ public class PedidoService implements PedidoServicePort {
         pedido.setStatusPedido(StatusPedido.RECEBIDO);
         pedido.setStatusPagamento(StatusPagamento.PAGAMENTO_PENDENTE);
         pedido.setDataHoraCriacao(LocalDateTime.now());
-        return this.pedidoRepositoryPort.criarPedido(pedido);
+        Pedido pedidoSaved = this.pedidoRepositoryPort.criarPedido(pedido);
+        pedidoSaved.setqRCode(pagamentoServicePort.solicitarQRCode(pedidoSaved.getId(), pedidoSaved.getValorTotalPedido(), pedidoSaved.getDataHoraCriacao()));
+        return pedidoSaved;
     }
 
     @Override

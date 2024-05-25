@@ -2,7 +2,6 @@ package com.fiap.soat.foodsystem.adapter.dto;
 
 import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
 import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,5 +23,6 @@ public class PedidoDTOResponse {
     private BigDecimal valorTotal;
     private LocalDateTime dataHoraCriacao;
     private String observacao;
+    private String qRCode;
     
 }
