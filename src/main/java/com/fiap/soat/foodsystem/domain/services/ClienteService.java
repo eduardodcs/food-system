@@ -1,6 +1,7 @@
 package com.fiap.soat.foodsystem.domain.services;
 
 import com.fiap.soat.foodsystem.common.exception.DomainException;
+import com.fiap.soat.foodsystem.common.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.model.Cliente;
 import com.fiap.soat.foodsystem.domain.ports.ClienteRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.ClienteServicePort;
@@ -42,6 +43,11 @@ public class ClienteService implements ClienteServicePort {
     @Override
     public Optional<Boolean> excluir(String cpf) {
         return Optional.of(repositoryPort.excluir(cpf));
+    }
+
+    @Override
+    public Cliente obterClientePorId(Long id) {
+        return this.repositoryPort.buscarPorId(id);
     }
 
 }

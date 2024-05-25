@@ -22,7 +22,8 @@ public class PedidoRepositoryAdapter implements PedidoRepositoryPort {
 
     @Override
     public Pedido criarPedido(Pedido pedido) {
-        PedidoEntity pedidoEntity = this.pedidoRepository.save(pedidoMapper.pedidoToPedidoEntity(pedido));
+        PedidoEntity pedido1 = pedidoMapper.pedidoToPedidoEntity(pedido);
+        PedidoEntity pedidoEntity = this.pedidoRepository.save(pedido1);
         return pedidoMapper.pedidoEntityToPedido(pedidoEntity);
     }
 

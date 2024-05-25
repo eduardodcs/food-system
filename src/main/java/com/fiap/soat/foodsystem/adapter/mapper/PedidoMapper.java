@@ -1,8 +1,9 @@
 package com.fiap.soat.foodsystem.adapter.mapper;
 
 import com.fiap.soat.foodsystem.adapter.dto.ClienteDTO;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTO;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoProdutoDTO;
+import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOReceived;
+import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOResponse;
+import com.fiap.soat.foodsystem.adapter.dto.PedidoProdutoDTOResponse;
 import com.fiap.soat.foodsystem.adapter.entities.ClienteEntity;
 import com.fiap.soat.foodsystem.adapter.entities.PedidoEntity;
 import com.fiap.soat.foodsystem.adapter.entities.PedidoProdutoEntity;
@@ -27,24 +28,28 @@ public class PedidoMapper {
     @Autowired
     private PedidoProdutoMapper pedidoProdutoMapper;
 
-    public Pedido pedidoDTOToPedido(PedidoDTO pedidoDTO) {
-        Cliente cliente = clienteMapper.clienteDTOToCliente(pedidoDTO.getCliente());
-        List<PedidoProduto> listaPedidoProduto = pedidoDTO.getListaPedidoProduto().stream()
-                .map(pedidoProdutoDTO -> pedidoProdutoMapper.pedidoProdutoDTOToPedidoProduto(pedidoProdutoDTO)).toList();
-        Pedido pedido = mapper.map(pedidoDTO, Pedido.class);
+    public Pedido pedidoDTOResponseToPedido(PedidoDTOResponse pedidoDTOResponse) {
+        Cliente cliente = clienteMapper.clienteDTOToCliente(pedidoDTOResponse.getCliente());
+        List<PedidoProduto> listaPedidoProduto = pedidoDTOResponse.getListaPedidoProduto().stream()
+                .map(pedidoProdutoDTOResponse -> pedidoProdutoMapper.pedidoProdutoDTOResponseToPedidoProduto(pedidoProdutoDTOResponse)).toList();
+        Pedido pedido = mapper.map(pedidoDTOResponse, Pedido.class);
         pedido.setCliente(cliente);
         pedido.setListaPedidoProdutos(listaPedidoProduto);
         return pedido;
     }
 
-    public PedidoDTO pedidoToPedidoDTO(Pedido pedido) {
-        PedidoDTO pedidoDTO = mapper.map(pedido, PedidoDTO.class);
+    public PedidoDTOResponse pedidoToPedidoDTOResponse(Pedido pedido) {
+        PedidoDTOResponse pedidoDTOResponse = mapper.map(pedido, PedidoDTOResponse.class);
         ClienteDTO clienteDTO = clienteMapper.clienteToClienteDTO(pedido.getCliente());
-        List<PedidoProdutoDTO> listaPedidoProdutoDTO = pedido.getListaPedidoProdutos().stream()
-                .map(pedidoProduto -> pedidoProdutoMapper.peditoProdutoToPedidoProdutoDTO(pedidoProduto, pedidoDTO)).toList();
-        pedidoDTO.setCliente(clienteDTO);
-        pedidoDTO.setListaPedidoProduto(listaPedidoProdutoDTO);
-        return pedidoDTO;
+        List<PedidoProdutoDTOResponse> listaPedidoProdutoDTOResponse = pedido.getListaPedidoProdutos().stream()
+                .map(pedidoProduto -> pedidoProdutoMapper.peditoProdutoToPedidoProdutoDTOResponse(pedidoProduto, pedidoDTOResponse)).toList();
+        pedidoDTOResponse.setCliente(clienteDTO);
+        pedidoDTOResponse.setListaPedidoProduto(listaPedidoProdutoDTOResponse);
+        return pedidoDTOResponse;
+    }
+
+    public Pedido pedidoDTOReceivedToPedido(PedidoDTOReceived pedidoDTOReceived) {
+        return mapper.map(pedidoDTOReceived, Pedido.class);
     }
 
     public PedidoEntity pedidoToPedidoEntity(Pedido pedido) {
@@ -53,17 +58,22 @@ public class PedidoMapper {
         List<PedidoProdutoEntity> listaPedidoProdutoEntity = pedido.getListaPedidoProdutos().stream()
                 .map(pedidoProduto -> pedidoProdutoMapper.pedidoProdutoToPedidoProdutoEntity(pedidoProduto, pedidoEntity)).toList();
         pedidoEntity.setCliente(clienteEntity);
+        pedidoEntity.setCliente_id(clienteEntity.getId());
         pedidoEntity.setListaPedidoProdutos(listaPedidoProdutoEntity);
         return pedidoEntity;
     }
 
     public Pedido pedidoEntityToPedido(PedidoEntity pedidoEntity) {
-        Pedido pedido = mapper.map(pedidoEntity, Pedido.class);
-        Cliente cliente = clienteMapper.clienteEntityToCliente(pedidoEntity.getCliente());
+        Pedido pedido = new Pedido();
+        pedido.setId(pedidoEntity.getId());
+        pedido.setCliente(clienteMapper.clienteEntityToCliente(pedidoEntity.getCliente()));
+        pedido.setStatusPedido(pedidoEntity.getStatusPedido());
+        pedido.setStatusPagamento(pedidoEntity.getStatusPagamento());
+        pedido.setValorTotalPedido(pedidoEntity.getValorTotal());
+        pedido.setDataHoraCriacao(pedidoEntity.getDataHoraCriacao());
+        pedido.setObservacao(pedidoEntity.getObservacao());
         List<PedidoProduto> listaPedidoProduto = pedidoEntity.getListaPedidoProdutos().stream()
                 .map(pedidoProdutoEntity -> pedidoProdutoMapper.pedidoProdutoEntityToPedidoProduto(pedidoProdutoEntity, pedido)).toList();
-
-        pedido.setCliente(cliente);
         pedido.setListaPedidoProdutos(listaPedidoProduto);
         return pedido;
     }

@@ -24,10 +24,11 @@ public class PedidoService implements PedidoServicePort {
     @Override
     @Transactional
     public Pedido salvarPedido(Pedido pedido) {
+        pedido.setId(null);
         pedido.setValorTotalPedido(BigDecimal.ZERO);
         pedido.getListaPedidoProdutos().stream().forEach(pedidoProduto -> {
             pedidoProduto.setSubTotal(pedidoProduto.getPrecoUnitario().multiply(BigDecimal.valueOf(pedidoProduto.getQtdeProduto())));
-            pedido.getValorTotalPedido().add(pedidoProduto.getSubTotal());
+            pedido.setValorTotalPedido(pedido.getValorTotalPedido().add(pedidoProduto.getSubTotal()));
         });
         pedido.setStatusPedido(StatusPedido.RECEBIDO);
         pedido.setStatusPagamento(StatusPagamento.PAGAMENTO_PENDENTE);
@@ -50,6 +51,15 @@ public class PedidoService implements PedidoServicePort {
     @Override
     @Transactional
     public Pedido atualizarPedido(Pedido pedido) {
+        Pedido pedidoOriginal = this.pedidoRepositoryPort.buscarPedidoPorId(pedido.getId());
+        pedido.setValorTotalPedido(BigDecimal.ZERO);
+        pedido.getListaPedidoProdutos().stream().forEach(pedidoProduto -> {
+            pedidoProduto.setSubTotal(pedidoProduto.getPrecoUnitario().multiply(BigDecimal.valueOf(pedidoProduto.getQtdeProduto())));
+            pedido.setValorTotalPedido(pedido.getValorTotalPedido().add(pedidoProduto.getSubTotal()));
+        });
+        pedido.setStatusPagamento(pedidoOriginal.getStatusPagamento());
+        pedido.setStatusPedido(pedidoOriginal.getStatusPedido());
+        pedido.setDataHoraCriacao(pedidoOriginal.getDataHoraCriacao());
         return this.pedidoRepositoryPort.atualizarPedido(pedido);
     }
 

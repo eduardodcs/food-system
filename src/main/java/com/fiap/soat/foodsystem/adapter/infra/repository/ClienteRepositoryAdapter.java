@@ -1,6 +1,7 @@
 package com.fiap.soat.foodsystem.adapter.infra.repository;
 
 import com.fiap.soat.foodsystem.adapter.entities.ClienteEntity;
+import com.fiap.soat.foodsystem.common.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.model.Cliente;
 import com.fiap.soat.foodsystem.domain.ports.ClienteRepositoryPort;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,13 @@ public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
             return Optional.empty();
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Cliente  buscarPorId(Long id) {
+        ClienteEntity clienteEntity = clienteRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Cliente não localizado com o ID informado"));
+        return mapper.map(clienteEntity, Cliente.class);
     }
 
     @Override

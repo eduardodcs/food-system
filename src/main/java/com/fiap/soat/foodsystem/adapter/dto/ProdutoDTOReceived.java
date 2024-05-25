@@ -1,21 +1,22 @@
 package com.fiap.soat.foodsystem.adapter.dto;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.NumberFormat;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ProdutoDTO {
+public class ProdutoDTOReceived {
 
+    @NumberFormat
     private Long id;
 
     @NotBlank(message = "Nome do produto não pode ser vazio")
@@ -29,12 +30,12 @@ public class ProdutoDTO {
     private String descricao;
 
     @NotNull(message = "Preço não pode ser nulo")
+    @NumberFormat
     private BigDecimal preco;
 
     @NotNull(message = "Categoria não pode ser nula")
-    private CategoriaDTO categoriaDTO;
+    @NumberFormat
+    private Long idCategoria;
 
     private boolean statusAtivo;
-
-    private LocalDateTime dataHoraCriacao;
 }
