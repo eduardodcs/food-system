@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 public class ClienteEntity {
 
     @Id
-    private Long id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String cpf;
     @Column(nullable = false)
     private String nome;
