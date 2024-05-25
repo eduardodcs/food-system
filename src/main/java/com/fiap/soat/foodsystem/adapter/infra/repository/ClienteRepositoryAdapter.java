@@ -76,7 +76,7 @@ public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
     }
 
     private Optional<ClienteEntity> localizarCliente(String cpf) {
-        return this.clienteRepository.findById(cpf);
+        return this.clienteRepository.findByCpf(cpf);
     }
 
 }

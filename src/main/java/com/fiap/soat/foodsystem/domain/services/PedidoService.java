@@ -1,7 +1,8 @@
 package com.fiap.soat.foodsystem.domain.services;
 
 import com.fiap.soat.foodsystem.common.exception.NotFoundException;
-import com.fiap.soat.foodsystem.domain.enums.StatusEnum;
+import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
+import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
 import com.fiap.soat.foodsystem.domain.model.Pedido;
 import com.fiap.soat.foodsystem.domain.ports.PedidoRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.PedidoServicePort;
@@ -28,16 +29,17 @@ public class PedidoService implements PedidoServicePort {
             pedidoProduto.setSubTotal(pedidoProduto.getPrecoUnitario().multiply(BigDecimal.valueOf(pedidoProduto.getQtdeProduto())));
             pedido.getValorTotalPedido().add(pedidoProduto.getSubTotal());
         });
-        pedido.setStatus(StatusEnum.RECEBIDO);
+        pedido.setStatusPedido(StatusPedido.RECEBIDO);
+        pedido.setStatusPagamento(StatusPagamento.PAGAMENTO_PENDENTE);
         pedido.setDataHoraCriacao(LocalDateTime.now());
         return this.pedidoRepositoryPort.criarPedido(pedido);
     }
 
     @Override
     public List<Pedido> buscarPedidoPorStatus(Integer status) {
-        StatusEnum statusEnum = Arrays.stream(StatusEnum.values()).filter(x -> x.ordinal() == status.intValue()).findFirst()
+        StatusPedido statusPedido = Arrays.stream(StatusPedido.values()).filter(x -> x.ordinal() == status.intValue()).findFirst()
                 .orElseThrow(() -> new NotFoundException("Status inválido"));
-        return this.pedidoRepositoryPort.listarPedidoPorStatus(statusEnum);
+        return this.pedidoRepositoryPort.listarPedidoPorStatus(statusPedido);
     }
 
     @Override
@@ -55,7 +57,7 @@ public class PedidoService implements PedidoServicePort {
     @Transactional
     public void cancelarPedido(Long id) {
         Pedido pedido = this.buscarPedidoPorId(id);
-        pedido.setStatus(StatusEnum.CANCELADO);
+        pedido.setStatusPedido(StatusPedido.CANCELADO);
         this.pedidoRepositoryPort.cancelarPedido(pedido);
     }
 }

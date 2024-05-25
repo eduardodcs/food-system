@@ -3,7 +3,7 @@ package com.fiap.soat.foodsystem.adapter.infra.repository;
 import com.fiap.soat.foodsystem.adapter.entities.PedidoEntity;
 import com.fiap.soat.foodsystem.adapter.mapper.PedidoMapper;
 import com.fiap.soat.foodsystem.common.exception.NotFoundException;
-import com.fiap.soat.foodsystem.domain.enums.StatusEnum;
+import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
 import com.fiap.soat.foodsystem.domain.model.Pedido;
 import com.fiap.soat.foodsystem.domain.ports.PedidoRepositoryPort;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +27,8 @@ public class PedidoRepositoryAdapter implements PedidoRepositoryPort {
     }
 
     @Override
-    public List<Pedido> listarPedidoPorStatus(StatusEnum status) {
-        List<PedidoEntity> listaPedidoEntity = this.pedidoRepository.findByStatus(status);
+    public List<Pedido> listarPedidoPorStatus(StatusPedido statusPedido) {
+        List<PedidoEntity> listaPedidoEntity = this.pedidoRepository.findByStatusPedido(statusPedido);
         return listaPedidoEntity.stream().map(pedidoEntity -> pedidoMapper.pedidoEntityToPedido(pedidoEntity)).toList();
     }
 
