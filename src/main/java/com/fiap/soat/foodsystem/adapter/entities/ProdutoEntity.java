@@ -28,10 +28,10 @@ public class ProdutoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, length = 80)
     private String nome;
     @NotNull
-    @Column(nullable = false, length = 510)
+    @Column(nullable = false, length = 500)
     private String descricao;
     @NotNull
     @Column(nullable = false, scale = 2, precision = 10)
