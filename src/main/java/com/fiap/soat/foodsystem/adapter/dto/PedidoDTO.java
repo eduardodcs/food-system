@@ -2,6 +2,7 @@ package com.fiap.soat.foodsystem.adapter.dto;
 
 import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
 import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ public class PedidoDTO {
     private StatusPagamento statusPagamento;
     private BigDecimal valorTotal;
     private LocalDateTime dataHoraCriacao;
+    @Size(max = 500, message = "Observação deve ter no máximo 500 caracteres")
     private String observacao;
-
-
+    
 }
