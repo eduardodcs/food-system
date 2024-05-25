@@ -1,6 +1,7 @@
 package com.fiap.soat.foodsystem.domain.model;
 
-import com.fiap.soat.foodsystem.domain.enums.StatusEnum;
+import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
+import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,8 +12,10 @@ public class Pedido {
     private Long id;
     private Cliente cliente;
     private List<PedidoProduto> listaPedidoProdutos;
-    private StatusEnum status;
+    private StatusPedido statusPedido;
+    private StatusPagamento statusPagamento;
     private BigDecimal valorTotalPedido;
+    private String observacao;
     private LocalDateTime dataHoraCriacao;
 
     public Pedido() {
@@ -42,12 +45,20 @@ public class Pedido {
         this.listaPedidoProdutos = listaPedidoProdutos;
     }
 
-    public StatusEnum getStatus() {
-        return status;
+    public StatusPedido getStatusPedido() {
+        return statusPedido;
     }
 
-    public void setStatus(StatusEnum status) {
-        this.status = status;
+    public void setStatusPedido(StatusPedido statusPedido) {
+        this.statusPedido = statusPedido;
+    }
+
+    public StatusPagamento getStatusPagamento() {
+        return statusPagamento;
+    }
+
+    public void setStatusPagamento(StatusPagamento statusPagamento) {
+        this.statusPagamento = statusPagamento;
     }
 
     public BigDecimal getValorTotalPedido() {
@@ -56,6 +67,14 @@ public class Pedido {
 
     public void setValorTotalPedido(BigDecimal valorTotalPedido) {
         this.valorTotalPedido = valorTotalPedido;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public LocalDateTime getDataHoraCriacao() {

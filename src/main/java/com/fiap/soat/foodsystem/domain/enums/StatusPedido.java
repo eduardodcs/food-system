@@ -3,7 +3,7 @@ package com.fiap.soat.foodsystem.domain.enums;
 import lombok.Getter;
 
 @Getter
-public enum StatusEnum {
+public enum StatusPedido {
 
     RECEBIDO("Recebido"),
     EM_PREPARACAO("Em Preparação"),
@@ -14,7 +14,7 @@ public enum StatusEnum {
 
     private String descricao;
 
-    StatusEnum(String descricao) {
+    StatusPedido(String descricao) {
         this.descricao = descricao;
     }
 
