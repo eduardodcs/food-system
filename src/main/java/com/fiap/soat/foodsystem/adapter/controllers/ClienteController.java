@@ -19,15 +19,13 @@ import java.util.Optional;
 @RequestMapping("cliente")
 public class ClienteController {
 
-    @Autowired
-    private ClienteServicePort servicePort;
+    private final ClienteServicePort servicePort;
+    private final ModelMapper mapper;
 
     @Autowired
-    private ModelMapper mapper;
-
-    @Autowired
-    public ClienteController(ClienteServicePort service) {
+    public ClienteController(ClienteServicePort service, ModelMapper mapper) {
         this.servicePort = service;
+        this.mapper = mapper;
     }
 
     @GetMapping("/{cpf}")
@@ -42,9 +40,8 @@ public class ClienteController {
     @Tag(name = "Cliente")
     @Operation(summary = "Cadastrar Cliente")
     public ResponseEntity<ClienteDTO> cadastrarCliente(@Validated @RequestBody ClienteDTO dto) {
-        Cliente response = servicePort.cadastrar(mapper.map(dto, Cliente.class));
-        Optional<Cliente> optionalCliente = Optional.ofNullable(response);
-        return optionalCliente.map(cliente -> {
+        Optional<Cliente> response = servicePort.cadastrar(mapper.map(dto, Cliente.class));
+        return response.map(cliente -> {
             ClienteDTO mapCliente = mapper.map(cliente, ClienteDTO.class);
             URI uri = URI.create("/cliente");
             return ResponseEntity.created(uri).body(mapCliente);

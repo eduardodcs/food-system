@@ -22,10 +22,9 @@ public class ClienteService implements ClienteServicePort {
     }
 
     @Override
-    public Cliente cadastrar(Cliente cliente) {
+    public Optional<Cliente> cadastrar(Cliente cliente) {
         try {
-            repositoryPort.salvar(cliente);
-            return cliente;
+            return repositoryPort.salvar(cliente).isEmpty() ? Optional.of(cliente) : Optional.empty();
         } catch (Exception ex) {
             throw new DomainException("Não foi possível salvar o cliente", ex.getCause());
         }

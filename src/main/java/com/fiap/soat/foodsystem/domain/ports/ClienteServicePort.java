@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface ClienteServicePort {
     Cliente consultarClientePorCpf(String cpf);
 
-    Cliente cadastrar(Cliente cliente);
+    Optional<Cliente> cadastrar(Cliente cliente);
 
     Optional<Cliente> atualizarDados(Cliente cliente);
 
