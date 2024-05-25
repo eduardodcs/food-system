@@ -1,6 +1,7 @@
 package com.fiap.soat.foodsystem.adapter.dto;
 
-import com.fiap.soat.foodsystem.domain.enums.StatusEnum;
+import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
+import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,9 +18,11 @@ public class PedidoDTO {
     private int id;
     private ClienteDTO cliente;
     private List<PedidoProdutoDTO> listaPedidoProduto;
-    private StatusEnum status;
+    private StatusPedido statusPedido;
+    private StatusPagamento statusPagamento;
     private BigDecimal valorTotal;
     private LocalDateTime dataHoraCriacao;
+    private String observacao;
 
 
 }
