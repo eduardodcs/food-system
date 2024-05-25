@@ -1,23 +1,11 @@
 package com.fiap.soat.foodsystem.domain.model;
 
-public class Cliente {
 
-    private Long id;
+public class Cliente {
     private String nome;
     private String cpf;
     private String telefone;
-    private String endereco;
-
-    public Cliente() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String email;
 
     public String getNome() {
         return nome;
@@ -43,11 +31,21 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Cliente() {
+    }
+
+    public Cliente(String nome, String cpf, String telefone, String email) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
     }
 }
