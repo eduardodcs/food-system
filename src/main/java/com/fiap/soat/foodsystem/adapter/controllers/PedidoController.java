@@ -1,7 +1,9 @@
 package com.fiap.soat.foodsystem.adapter.controllers;
 
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTO;
+import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOReceived;
+import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOResponse;
 import com.fiap.soat.foodsystem.adapter.mapper.PedidoMapper;
+import com.fiap.soat.foodsystem.adapter.service.PedidoServiceAdapter;
 import com.fiap.soat.foodsystem.domain.model.Pedido;
 import com.fiap.soat.foodsystem.domain.ports.PedidoServicePort;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,40 +25,41 @@ public class PedidoController {
     private PedidoServicePort pedidoServicePort;
 
     @Autowired
+    private PedidoServiceAdapter pedidoServiceAdapter;
+
+    @Autowired
     private PedidoMapper pedidoMapper;
 
     @PostMapping
     @Transactional
     @Tag(name = "Pedido")
     @Operation(summary = "Salvar pedido")
-    public ResponseEntity<PedidoDTO> salvarPedido(@RequestBody @Valid PedidoDTO pedidoDTO){
-        Pedido pedido = this.pedidoServicePort.salvarPedido(this.pedidoMapper.pedidoDTOToPedido(pedidoDTO));
-        return ResponseEntity.ok(pedidoMapper.pedidoToPedidoDTO(pedido));
+    public ResponseEntity<PedidoDTOResponse> salvarPedido(@RequestBody @Valid PedidoDTOReceived pedidoDTOReceived){
+        return ResponseEntity.ok(this.pedidoServiceAdapter.salvarPedido(pedidoDTOReceived));
     }
 
     @GetMapping("{id}")
     @Tag(name = "Pedido")
     @Operation(summary = "Buscar pedido por Id")
-    public ResponseEntity<PedidoDTO> buscarPedidoPorId(@PathVariable("id") Long id){
+    public ResponseEntity<PedidoDTOResponse> buscarPedidoPorId(@PathVariable("id") Long id){
         Pedido pedido = this.pedidoServicePort.buscarPedidoPorId(id);
-        return ResponseEntity.ok(pedidoMapper.pedidoToPedidoDTO(pedido));
+        return ResponseEntity.ok(pedidoMapper.pedidoToPedidoDTOResponse(pedido));
     }
 
     @GetMapping("/status/{status}")
     @Tag(name = "Pedido")
     @Operation(summary = "Buscar pedido por status")
-    public ResponseEntity<List<PedidoDTO>> buscarPedidosPorStatus(@PathVariable("status") Integer status){
+    public ResponseEntity<List<PedidoDTOResponse>> buscarPedidosPorStatus(@PathVariable("status") Integer status){
         List<Pedido> listaPedido = this.pedidoServicePort.buscarPedidoPorStatus(status);
-        return ResponseEntity.ok(listaPedido.stream().map(pedido -> pedidoMapper.pedidoToPedidoDTO(pedido)).toList());
+        return ResponseEntity.ok(listaPedido.stream().map(pedido -> pedidoMapper.pedidoToPedidoDTOResponse(pedido)).toList());
     }
 
     @PutMapping
     @Transactional
     @Tag(name = "Pedido")
     @Operation(summary = "Atualizar pedido")
-    public ResponseEntity<PedidoDTO> atualizarPedido(@RequestBody @Valid PedidoDTO pedidoDTO){
-        Pedido pedido = this.pedidoServicePort.atualizarPedido(this.pedidoMapper.pedidoDTOToPedido(pedidoDTO));
-        return ResponseEntity.ok(pedidoMapper.pedidoToPedidoDTO(pedido));
+    public ResponseEntity<PedidoDTOResponse> atualizarPedido(@RequestBody @Valid PedidoDTOReceived pedidoDTOReceived){
+        return ResponseEntity.ok(this.pedidoServiceAdapter.atualizarPedido(pedidoDTOReceived));
     }
 
 

@@ -27,6 +27,7 @@ public class ProdutoService implements ProdutoServicePort  {
 
     @Override
     public Produto salvarProduto(Produto produto) {
+        produto.setId(null);
         produto.setStatusAtivo(true);
         produto.setDataHoraCriacao(LocalDateTime.now());
         return this.produtoRepositoryPort.salvarProduto(produto);

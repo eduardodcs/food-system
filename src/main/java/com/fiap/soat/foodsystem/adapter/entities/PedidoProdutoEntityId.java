@@ -1,21 +1,26 @@
 package com.fiap.soat.foodsystem.adapter.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import com.fiap.soat.foodsystem.domain.model.Pedido;
+import com.fiap.soat.foodsystem.domain.model.Produto;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
 @Embeddable
 public class PedidoProdutoEntityId {
 
-    @EqualsAndHashCode.Include
-    @Column(name = "pedido_id")
-    private Long pedido_id;
-    @EqualsAndHashCode.Include
-    @Column(name = "produto_id")
-    private Long produto_id;
+    @ManyToOne(targetEntity = PedidoEntity.class)
+    @JoinColumn(name = "pedido_id", foreignKey = @ForeignKey(name = "FK_Pedido"))
+    @EqualsAndHashCode.Exclude
+    private PedidoEntity pedido_id;
+    @ManyToOne(targetEntity = ProdutoEntity.class)
+    @EqualsAndHashCode.Exclude
+    @JoinColumn(name = "produto_id", foreignKey = @ForeignKey(name = "FK_Produto"))
+    private ProdutoEntity produto_id;
 }

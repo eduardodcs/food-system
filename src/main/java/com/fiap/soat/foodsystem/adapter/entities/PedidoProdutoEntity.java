@@ -1,35 +1,31 @@
 package com.fiap.soat.foodsystem.adapter.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@ToString
 @Entity
-@IdClass(PedidoProdutoEntityId.class)
+//@IdClass(PedidoProdutoEntityId.class)
 @Table(name = "Pedido_Produto")
 public class PedidoProdutoEntity {
 
-    @EqualsAndHashCode.Include
-    @Id
-    @Column(name = "pedido_id")
+    @EmbeddedId
+    private PedidoProdutoEntityId id;
+    @MapsId("pedido_id")
+    @Column(insertable=false, updatable=false)
     private Long pedido_id;
-    @EqualsAndHashCode.Include
-    @Id
-    @Column(name = "produto_id")
+    @MapsId("produto_id")
+    @Column(insertable=false, updatable=false)
     private Long produto_id;
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "pedido_id", foreignKey = @ForeignKey(name = "FK_Pedido"), insertable = false, updatable = false)
+//    @Transient
 //    private PedidoEntity pedido;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "produto_id", foreignKey = @ForeignKey(name = "FK_Produto"), insertable = false, updatable = false)
-    private ProdutoEntity produto;
+//    @Transient
+//    private ProdutoEntity produto;
     private Integer qtdeProduto;
     private BigDecimal precoUnitario;
     private BigDecimal subTotal;

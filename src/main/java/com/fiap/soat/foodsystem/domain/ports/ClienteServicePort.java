@@ -12,4 +12,6 @@ public interface ClienteServicePort {
     Optional<Cliente> atualizarDados(Cliente cliente);
 
     Optional<Boolean> excluir(String cpf);
+
+    Cliente obterClientePorId(Long id);
 }

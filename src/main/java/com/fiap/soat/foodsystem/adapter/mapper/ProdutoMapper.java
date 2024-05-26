@@ -1,7 +1,8 @@
 package com.fiap.soat.foodsystem.adapter.mapper;
 
 import com.fiap.soat.foodsystem.adapter.dto.CategoriaDTO;
-import com.fiap.soat.foodsystem.adapter.dto.ProdutoDTO;
+import com.fiap.soat.foodsystem.adapter.dto.ProdutoDTOReceived;
+import com.fiap.soat.foodsystem.adapter.dto.ProdutoDTOResponse;
 import com.fiap.soat.foodsystem.adapter.entities.CategoriaEntity;
 import com.fiap.soat.foodsystem.adapter.entities.ProdutoEntity;
 import com.fiap.soat.foodsystem.domain.model.Categoria;
@@ -16,18 +17,22 @@ public class ProdutoMapper {
     @Autowired
     private ModelMapper mapper;
 
-    public ProdutoDTO produtoToProdutoDTO(Produto produto) {
+    public ProdutoDTOResponse produtoToProdutoDTOResponse(Produto produto) {
         CategoriaDTO categoriaDTO = mapper.map(produto.getCategoria(), CategoriaDTO.class);
-        ProdutoDTO produtoDTO = mapper.map(produto, ProdutoDTO.class);
-        produtoDTO.setCategoriaDTO(categoriaDTO);
-        return produtoDTO;
+        ProdutoDTOResponse produtoDTOResponse = mapper.map(produto, ProdutoDTOResponse.class);
+        produtoDTOResponse.setCategoriaDTO(categoriaDTO);
+        return produtoDTOResponse;
     }
 
-    public Produto produtoDTOToProduto(ProdutoDTO produtoDTO) {
-        Categoria categoria = mapper.map(produtoDTO.getCategoriaDTO(), Categoria.class);
-        Produto produto = mapper.map(produtoDTO, Produto.class);
+    public Produto produtoDTOResponseToProduto(ProdutoDTOResponse produtoDTOResponse) {
+        Categoria categoria = mapper.map(produtoDTOResponse.getCategoriaDTO(), Categoria.class);
+        Produto produto = mapper.map(produtoDTOResponse, Produto.class);
         produto.setCategoria(categoria);
         return produto;
+    }
+
+    public Produto produtoDTOReceivedToProduto(ProdutoDTOReceived produtoDTOReceived) {
+        return mapper.map(produtoDTOReceived, Produto.class);
     }
 
     public ProdutoEntity produtoToProdutoEntity(Produto produto) {

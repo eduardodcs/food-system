@@ -9,9 +9,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PedidoProdutoDTO {
+public class PedidoProdutoDTOResponse {
 
-    private ProdutoDTO produto;
+    private ProdutoDTOResponse produto;
     private Integer qtdeProduto;
     private BigDecimal precoUnitario;
     private BigDecimal subTotal;

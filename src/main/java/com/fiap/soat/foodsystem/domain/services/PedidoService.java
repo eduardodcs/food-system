@@ -4,6 +4,7 @@ import com.fiap.soat.foodsystem.common.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
 import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
 import com.fiap.soat.foodsystem.domain.model.Pedido;
+import com.fiap.soat.foodsystem.domain.ports.PagamentoServicePort;
 import com.fiap.soat.foodsystem.domain.ports.PedidoRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.PedidoServicePort;
 import jakarta.transaction.Transactional;
@@ -17,22 +18,28 @@ public class PedidoService implements PedidoServicePort {
 
     private PedidoRepositoryPort pedidoRepositoryPort;
 
-    public PedidoService(PedidoRepositoryPort pedidoRepositoryPort) {
+    private PagamentoServicePort pagamentoServicePort;
+
+    public PedidoService(PedidoRepositoryPort pedidoRepositoryPort, PagamentoServicePort pagamentoServicePort) {
         this.pedidoRepositoryPort = pedidoRepositoryPort;
+        this.pagamentoServicePort = pagamentoServicePort;
     }
 
     @Override
     @Transactional
     public Pedido salvarPedido(Pedido pedido) {
+        pedido.setId(null);
         pedido.setValorTotalPedido(BigDecimal.ZERO);
         pedido.getListaPedidoProdutos().stream().forEach(pedidoProduto -> {
             pedidoProduto.setSubTotal(pedidoProduto.getPrecoUnitario().multiply(BigDecimal.valueOf(pedidoProduto.getQtdeProduto())));
-            pedido.getValorTotalPedido().add(pedidoProduto.getSubTotal());
+            pedido.setValorTotalPedido(pedido.getValorTotalPedido().add(pedidoProduto.getSubTotal()));
         });
         pedido.setStatusPedido(StatusPedido.RECEBIDO);
         pedido.setStatusPagamento(StatusPagamento.PAGAMENTO_PENDENTE);
         pedido.setDataHoraCriacao(LocalDateTime.now());
-        return this.pedidoRepositoryPort.criarPedido(pedido);
+        Pedido pedidoSaved = this.pedidoRepositoryPort.criarPedido(pedido);
+        pedidoSaved.setqRCode(pagamentoServicePort.solicitarQRCode(pedidoSaved.getId(), pedidoSaved.getValorTotalPedido(), pedidoSaved.getDataHoraCriacao()));
+        return pedidoSaved;
     }
 
     @Override
@@ -50,6 +57,15 @@ public class PedidoService implements PedidoServicePort {
     @Override
     @Transactional
     public Pedido atualizarPedido(Pedido pedido) {
+        Pedido pedidoOriginal = this.pedidoRepositoryPort.buscarPedidoPorId(pedido.getId());
+        pedido.setValorTotalPedido(BigDecimal.ZERO);
+        pedido.getListaPedidoProdutos().stream().forEach(pedidoProduto -> {
+            pedidoProduto.setSubTotal(pedidoProduto.getPrecoUnitario().multiply(BigDecimal.valueOf(pedidoProduto.getQtdeProduto())));
+            pedido.setValorTotalPedido(pedido.getValorTotalPedido().add(pedidoProduto.getSubTotal()));
+        });
+        pedido.setStatusPagamento(pedidoOriginal.getStatusPagamento());
+        pedido.setStatusPedido(pedidoOriginal.getStatusPedido());
+        pedido.setDataHoraCriacao(pedidoOriginal.getDataHoraCriacao());
         return this.pedidoRepositoryPort.atualizarPedido(pedido);
     }
 

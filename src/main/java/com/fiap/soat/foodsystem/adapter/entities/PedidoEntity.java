@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString
 @Entity
 @Table(name = "Pedido")
 public class PedidoEntity {
@@ -27,7 +29,7 @@ public class PedidoEntity {
     @ManyToOne
     @JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "FK_Cliente"), updatable = false, insertable = false)
     private ClienteEntity cliente;
-    @OneToMany(mappedBy = "pedido_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedido_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PedidoProdutoEntity> listaPedidoProdutos = new ArrayList<>();
     private StatusPedido statusPedido;
     private StatusPagamento statusPagamento;
