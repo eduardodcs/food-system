@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @Data
 @ToString
 @Entity
-//@IdClass(PedidoProdutoEntityId.class)
 @Table(name = "Pedido_Produto")
 public class PedidoProdutoEntity {
 
@@ -22,10 +21,6 @@ public class PedidoProdutoEntity {
     @MapsId("produto_id")
     @Column(insertable=false, updatable=false)
     private Long produto_id;
-//    @Transient
-//    private PedidoEntity pedido;
-//    @Transient
-//    private ProdutoEntity produto;
     private Integer qtdeProduto;
     private BigDecimal precoUnitario;
     private BigDecimal subTotal;

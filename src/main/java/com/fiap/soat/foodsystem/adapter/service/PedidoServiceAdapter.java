@@ -2,6 +2,7 @@ package com.fiap.soat.foodsystem.adapter.service;
 
 import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOReceived;
 import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOResponse;
+import com.fiap.soat.foodsystem.adapter.infra.utils.AtualizacaoStatusUtil;
 import com.fiap.soat.foodsystem.adapter.mapper.PedidoMapper;
 import com.fiap.soat.foodsystem.adapter.mapper.PedidoProdutoMapper;
 import com.fiap.soat.foodsystem.domain.model.Cliente;
@@ -34,6 +35,8 @@ public class PedidoServiceAdapter {
     @Autowired
     private ClienteServicePort clienteServicePort;
 
+    @Autowired
+    private AtualizacaoStatusUtil statusUtil;
 
     public PedidoDTOResponse salvarPedido(PedidoDTOReceived pedidoDTOReceived) {
         Pedido pedido = this.pedidoMapper.pedidoDTOReceivedToPedido(pedidoDTOReceived);
@@ -62,6 +65,7 @@ public class PedidoServiceAdapter {
             return pedidoProduto;
         }).toList();
         pedido.setListaPedidoProdutos(listaPedidoProduto);
+        this.statusUtil.avancarPedido();
         return this.pedidoMapper.pedidoToPedidoDTOResponse(this.pedidoServicePort.atualizarPedido(pedido));
     }
 }
