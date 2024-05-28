@@ -10,7 +10,7 @@ Software Architecture / Turma 6
 - Halisson Brancalhão - RM354155 (Discord: Hallison Brancalhão - RM354155)
 
 Event Storming
-[Miro - Event Storming](https://miro.com/welcomeonboard/NG11bWxGbHJNSmhSNTZoTmRFb3FmNlRwZ1VZM25VbEgySXhoYzZUNVVwbnF2ZWRqbEVjSHFueWMzRE80eWdlYnwzMDc0NDU3MzYyMjUwOTY4MTQ5fDI=?share_link_id=573870846258)
+[Miro - Event Storming](https://miro.com/app/board/uXjVKPwP9b0=/?share_link_id=965497713343)
 
 
 Documentação Swagger
