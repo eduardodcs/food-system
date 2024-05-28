@@ -17,7 +17,14 @@ Documentação Swagger
 http://localhost:8080/documentation.html
 
 
-## Instuições para subir o sistema local
+## Subir aplicação com Docker-Compose
+Profile deploy - Banco de dados Postgres
+```sh
+docker-compose up -d
+```
+
+
+## Instruções para subir o sistema local - desenvolvimento
 Criar o jar do sistema (Quando baixar o repositório ou para gerar nova imagem docker):
 ```sh
 mvn clean install  
@@ -29,8 +36,4 @@ docker build -t food-system .
 Subir container (Profile default - Banco de dados em memória H2)
 ```sh
 docker run -d --name food-system -p 8080:8080 food-system
-```
-Subir docker-compose (Profile deploy - Banco de dados Postgress)
-```sh
-docker-compose up -d
 ```
