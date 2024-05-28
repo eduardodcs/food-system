@@ -25,7 +25,13 @@ public class ClienteService implements ClienteServicePort {
     @Override
     public Optional<Cliente> cadastrar(Cliente cliente) {
         try {
-            return repositoryPort.salvar(cliente).isEmpty() ? Optional.of(cliente) : Optional.empty();
+            String retorno = repositoryPort.salvar(cliente);
+            if (retorno.isEmpty() || retorno.contains("|")) {
+                return Optional.empty();
+            } else {
+                cliente.setId(Long.parseLong(retorno));
+                return Optional.of(cliente);
+            }
         } catch (Exception ex) {
             throw new DomainException("Não foi possível salvar o cliente", ex.getCause());
         }

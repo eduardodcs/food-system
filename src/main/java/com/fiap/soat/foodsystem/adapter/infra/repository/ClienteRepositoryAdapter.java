@@ -52,8 +52,8 @@ public class ClienteRepositoryAdapter implements ClienteRepositoryPort {
         }
 
         if (retorno.isEmpty()) {
-            this.clienteRepository.save(entity);
-            return "";
+            ClienteEntity clienteSalvo = this.clienteRepository.save(entity);
+            return clienteSalvo.getId().toString();
         }
         return String.join("|", retorno);
     }

@@ -3,7 +3,9 @@ package com.fiap.soat.foodsystem.domain.services;
 import com.fiap.soat.foodsystem.common.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
 import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
+import com.fiap.soat.foodsystem.domain.model.FilaPreparo;
 import com.fiap.soat.foodsystem.domain.model.Pedido;
+import com.fiap.soat.foodsystem.domain.ports.FilaPreparoServicePort;
 import com.fiap.soat.foodsystem.domain.ports.PagamentoServicePort;
 import com.fiap.soat.foodsystem.domain.ports.PedidoRepositoryPort;
 import com.fiap.soat.foodsystem.domain.ports.PedidoServicePort;
@@ -20,9 +22,12 @@ public class PedidoService implements PedidoServicePort {
 
     private PagamentoServicePort pagamentoServicePort;
 
-    public PedidoService(PedidoRepositoryPort pedidoRepositoryPort, PagamentoServicePort pagamentoServicePort) {
+    private FilaPreparoServicePort filaPreparoServicePort;
+
+    public PedidoService(PedidoRepositoryPort pedidoRepositoryPort, PagamentoServicePort pagamentoServicePort, FilaPreparoServicePort filaPreparoServicePort) {
         this.pedidoRepositoryPort = pedidoRepositoryPort;
         this.pagamentoServicePort = pagamentoServicePort;
+        this.filaPreparoServicePort = filaPreparoServicePort;
     }
 
     @Override
@@ -76,4 +81,20 @@ public class PedidoService implements PedidoServicePort {
         pedido.setStatusPedido(StatusPedido.CANCELADO);
         this.pedidoRepositoryPort.cancelarPedido(pedido);
     }
+
+    @Override
+    @Transactional
+    public void confirmarPagamento(Long id) {
+        Pedido pedido = this.buscarPedidoPorId(id);
+        pedido.setStatusPagamento(StatusPagamento.PAGAMENTO_FINALIZADO);
+        pedido.setStatusPedido(StatusPedido.EM_PREPARACAO);
+        this.pedidoRepositoryPort.atualizarPedido(pedido);
+
+        this.enviarPedidoParaFilaPreparo(pedido);
+    }
+
+    private void enviarPedidoParaFilaPreparo(Pedido pedido) {
+        this.filaPreparoServicePort.enviarPedidoParaFilaPreparo(pedido);
+    }
+
 }

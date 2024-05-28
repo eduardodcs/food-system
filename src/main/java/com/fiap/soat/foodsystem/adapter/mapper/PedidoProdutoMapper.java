@@ -37,7 +37,6 @@ public class PedidoProdutoMapper {
     }
 
     public PedidoProdutoEntity pedidoProdutoToPedidoProdutoEntity(PedidoProduto pedidoProduto, PedidoEntity pedidoEntity) {
-//        PedidoProdutoEntity pedidoProdutoEntity = mapper.map(pedidoProduto, PedidoProdutoEntity.class);
         PedidoProdutoEntity pedidoProdutoEntity = new PedidoProdutoEntity();
         pedidoProdutoEntity.setId(new PedidoProdutoEntityId());
         pedidoProdutoEntity.getId().setPedido_id(pedidoEntity);

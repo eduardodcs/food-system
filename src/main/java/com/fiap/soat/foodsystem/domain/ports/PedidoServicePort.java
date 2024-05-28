@@ -15,4 +15,6 @@ public interface PedidoServicePort {
     Pedido atualizarPedido(Pedido pedido);
 
     void cancelarPedido(Long id);
+
+    void confirmarPagamento(Long id);
 }

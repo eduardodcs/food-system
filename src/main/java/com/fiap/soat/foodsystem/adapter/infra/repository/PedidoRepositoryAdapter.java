@@ -1,6 +1,7 @@
 package com.fiap.soat.foodsystem.adapter.infra.repository;
 
 import com.fiap.soat.foodsystem.adapter.entities.PedidoEntity;
+import com.fiap.soat.foodsystem.adapter.infra.utils.AtualizacaoStatusUtil;
 import com.fiap.soat.foodsystem.adapter.mapper.PedidoMapper;
 import com.fiap.soat.foodsystem.common.exception.NotFoundException;
 import com.fiap.soat.foodsystem.domain.enums.StatusPedido;

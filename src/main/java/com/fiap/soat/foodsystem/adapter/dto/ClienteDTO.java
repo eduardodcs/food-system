@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 public class ClienteDTO {
-    
+
     private Long id;
 
     @NotBlank(message = "CPF é obrigatório")
