@@ -1,5 +1,6 @@
 package com.fiap.soat.foodsystem.adapter.infra.config;
 
+import com.fiap.soat.foodsystem.adapter.service.PedidoServiceAdapter;
 import com.fiap.soat.foodsystem.domain.ports.*;
 import com.fiap.soat.foodsystem.domain.services.*;
 import org.modelmapper.ModelMapper;
@@ -30,13 +31,20 @@ public class BeansConfig {
 	}
 
 	@Bean
-	public PedidoServicePort pedidoServicePort(PedidoRepositoryPort pedidoRepositoryPort, PagamentoServicePort pagamentoServicePort) {
-		return new PedidoService(pedidoRepositoryPort, pagamentoServicePort);
-
+	public PedidoServicePort pedidoServicePort(PedidoRepositoryPort pedidoRepositoryPort, PagamentoServicePort pagamentoServicePort,
+											   FilaPreparoServicePort filaPreparoServicePort) {
+		return new PedidoService(pedidoRepositoryPort, pagamentoServicePort, filaPreparoServicePort);
 	}
 
 	@Bean PagamentoServicePort pagamentoServicePort(PagamentoClientPort pagamentoClientPort) {
 		return new PagamentoService(pagamentoClientPort);
 	}
+
+	@Bean FilaPreparoServicePort filaPreparoServicePort(FilaPreparoRepositoryPort filaPreparoRepositoryPort) {
+		return new FilaPedidoService(filaPreparoRepositoryPort);
+	}
+
+
+
 
 }

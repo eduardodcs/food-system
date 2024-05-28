@@ -27,7 +27,7 @@ public class PedidoEntity {
     @Column(name = "cliente_id")
     private Long cliente_id;
     @ManyToOne
-    @JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "FK_Cliente"), updatable = false, insertable = false)
+    @JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "FK_Cliente_Pedido"), updatable = false, insertable = false)
     private ClienteEntity cliente;
     @OneToMany(mappedBy = "pedido_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PedidoProdutoEntity> listaPedidoProdutos = new ArrayList<>();
