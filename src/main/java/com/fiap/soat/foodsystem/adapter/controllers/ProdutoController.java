@@ -1,11 +1,11 @@
 package com.fiap.soat.foodsystem.adapter.controllers;
 
-import com.fiap.soat.foodsystem.adapter.dto.ProdutoDTOReceived;
-import com.fiap.soat.foodsystem.adapter.dto.ProdutoDTOResponse;
+import com.fiap.soat.foodsystem.modules.dto.ProdutoDTOReceived;
+import com.fiap.soat.foodsystem.modules.dto.ProdutoDTOResponse;
 import com.fiap.soat.foodsystem.adapter.mapper.ProdutoMapper;
-import com.fiap.soat.foodsystem.adapter.service.ProdutoServiceAdapter;
-import com.fiap.soat.foodsystem.domain.model.Produto;
-import com.fiap.soat.foodsystem.domain.ports.ProdutoServicePort;
+import com.fiap.soat.foodsystem.adapter.produto.ProdutoServiceAdapter;
+import com.fiap.soat.foodsystem.modules.domain.model.Produto;
+import com.fiap.soat.foodsystem.adapter.interfaces.ProdutoServicePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;

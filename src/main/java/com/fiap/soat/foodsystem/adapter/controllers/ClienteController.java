@@ -1,8 +1,8 @@
 package com.fiap.soat.foodsystem.adapter.controllers;
 
-import com.fiap.soat.foodsystem.adapter.dto.ClienteDTO;
-import com.fiap.soat.foodsystem.domain.model.Cliente;
-import com.fiap.soat.foodsystem.domain.ports.ClienteServicePort;
+import com.fiap.soat.foodsystem.modules.dto.ClienteDTO;
+import com.fiap.soat.foodsystem.modules.domain.model.Cliente;
+import com.fiap.soat.foodsystem.adapter.interfaces.ClienteServicePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

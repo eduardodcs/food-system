@@ -1,11 +1,11 @@
 package com.fiap.soat.foodsystem.adapter.controllers;
 
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOReceived;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOResponse;
+import com.fiap.soat.foodsystem.modules.dto.PedidoDTOReceived;
+import com.fiap.soat.foodsystem.modules.dto.PedidoDTOResponse;
 import com.fiap.soat.foodsystem.adapter.mapper.PedidoMapper;
-import com.fiap.soat.foodsystem.adapter.service.PedidoServiceAdapter;
-import com.fiap.soat.foodsystem.domain.model.Pedido;
-import com.fiap.soat.foodsystem.domain.ports.PedidoServicePort;
+import com.fiap.soat.foodsystem.adapter.pedido.PedidoServiceAdapter;
+import com.fiap.soat.foodsystem.modules.domain.model.Pedido;
+import com.fiap.soat.foodsystem.adapter.interfaces.PedidoServicePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;

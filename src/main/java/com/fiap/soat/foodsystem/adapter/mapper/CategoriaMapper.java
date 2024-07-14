@@ -1,8 +1,8 @@
 package com.fiap.soat.foodsystem.adapter.mapper;
 
-import com.fiap.soat.foodsystem.adapter.dto.CategoriaDTO;
-import com.fiap.soat.foodsystem.adapter.entities.CategoriaEntity;
-import com.fiap.soat.foodsystem.domain.model.Categoria;
+import com.fiap.soat.foodsystem.modules.dto.CategoriaDTO;
+import com.fiap.soat.foodsystem.modules.domain.entities.CategoriaEntity;
+import com.fiap.soat.foodsystem.modules.domain.model.Categoria;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

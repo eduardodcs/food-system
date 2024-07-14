@@ -1,0 +1,12 @@
+package com.fiap.soat.foodsystem.adapter.interfaces;
+
+import com.fiap.soat.foodsystem.modules.domain.entities.ClienteEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface ClienteRepository extends JpaRepository<ClienteEntity, Long> {
+    boolean existsByCpf(String cpf);
+    boolean existsByEmail(String email);
+    Optional<ClienteEntity> findByCpf(String cpf);
+}

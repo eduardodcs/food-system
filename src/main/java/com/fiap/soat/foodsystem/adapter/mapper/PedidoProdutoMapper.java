@@ -1,19 +1,17 @@
 package com.fiap.soat.foodsystem.adapter.mapper;
 
-import com.fiap.soat.foodsystem.adapter.dto.*;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoEntity;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoProdutoEntity;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoProdutoEntityId;
-import com.fiap.soat.foodsystem.adapter.entities.ProdutoEntity;
-import com.fiap.soat.foodsystem.domain.model.Categoria;
-import com.fiap.soat.foodsystem.domain.model.Pedido;
-import com.fiap.soat.foodsystem.domain.model.PedidoProduto;
-import com.fiap.soat.foodsystem.domain.model.Produto;
+import com.fiap.soat.foodsystem.modules.domain.entities.PedidoEntity;
+import com.fiap.soat.foodsystem.modules.domain.entities.PedidoProdutoEntity;
+import com.fiap.soat.foodsystem.modules.domain.entities.PedidoProdutoEntityId;
+import com.fiap.soat.foodsystem.modules.domain.entities.ProdutoEntity;
+import com.fiap.soat.foodsystem.modules.domain.model.Categoria;
+import com.fiap.soat.foodsystem.modules.domain.model.Pedido;
+import com.fiap.soat.foodsystem.modules.domain.model.PedidoProduto;
+import com.fiap.soat.foodsystem.modules.domain.model.Produto;
+import com.fiap.soat.foodsystem.modules.dto.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class PedidoProdutoMapper {

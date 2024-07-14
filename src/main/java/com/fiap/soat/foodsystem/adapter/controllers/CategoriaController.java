@@ -1,9 +1,9 @@
 package com.fiap.soat.foodsystem.adapter.controllers;
 
-import com.fiap.soat.foodsystem.adapter.dto.CategoriaDTO;
+import com.fiap.soat.foodsystem.modules.dto.CategoriaDTO;
 import com.fiap.soat.foodsystem.adapter.mapper.CategoriaMapper;
-import com.fiap.soat.foodsystem.domain.model.Categoria;
-import com.fiap.soat.foodsystem.domain.ports.CategoriaServicePort;
+import com.fiap.soat.foodsystem.modules.domain.model.Categoria;
+import com.fiap.soat.foodsystem.adapter.interfaces.CategoriaServicePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;

@@ -1,15 +1,15 @@
 package com.fiap.soat.foodsystem.adapter.mapper;
 
-import com.fiap.soat.foodsystem.adapter.dto.ClienteDTO;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOReceived;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOResponse;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoProdutoDTOResponse;
-import com.fiap.soat.foodsystem.adapter.entities.ClienteEntity;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoEntity;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoProdutoEntity;
-import com.fiap.soat.foodsystem.domain.model.Cliente;
-import com.fiap.soat.foodsystem.domain.model.Pedido;
-import com.fiap.soat.foodsystem.domain.model.PedidoProduto;
+import com.fiap.soat.foodsystem.modules.dto.ClienteDTO;
+import com.fiap.soat.foodsystem.modules.dto.PedidoDTOReceived;
+import com.fiap.soat.foodsystem.modules.dto.PedidoDTOResponse;
+import com.fiap.soat.foodsystem.modules.dto.PedidoProdutoDTOResponse;
+import com.fiap.soat.foodsystem.modules.domain.entities.ClienteEntity;
+import com.fiap.soat.foodsystem.modules.domain.entities.PedidoEntity;
+import com.fiap.soat.foodsystem.modules.domain.entities.PedidoProdutoEntity;
+import com.fiap.soat.foodsystem.modules.domain.model.Cliente;
+import com.fiap.soat.foodsystem.modules.domain.model.Pedido;
+import com.fiap.soat.foodsystem.modules.domain.model.PedidoProduto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

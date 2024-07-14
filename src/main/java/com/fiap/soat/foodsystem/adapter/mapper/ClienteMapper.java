@@ -1,8 +1,8 @@
 package com.fiap.soat.foodsystem.adapter.mapper;
 
-import com.fiap.soat.foodsystem.adapter.dto.ClienteDTO;
-import com.fiap.soat.foodsystem.adapter.entities.ClienteEntity;
-import com.fiap.soat.foodsystem.domain.model.Cliente;
+import com.fiap.soat.foodsystem.modules.dto.ClienteDTO;
+import com.fiap.soat.foodsystem.modules.domain.entities.ClienteEntity;
+import com.fiap.soat.foodsystem.modules.domain.model.Cliente;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
