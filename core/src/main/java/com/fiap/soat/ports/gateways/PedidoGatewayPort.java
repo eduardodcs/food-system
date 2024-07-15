@@ -1,4 +1,4 @@
-package com.fiap.soat.ports;
+package com.fiap.soat.ports.gateways;
 
 import com.fiap.soat.enums.StatusPedido;
 import com.fiap.soat.entities.Pedido;

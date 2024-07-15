@@ -8,9 +8,9 @@ import com.fiap.soat.entities.Pedido;
 import com.fiap.soat.entities.PedidoProduto;
 import com.fiap.soat.presenters.PedidoPresenter;
 import com.fiap.soat.presenters.PedidoProdutoPresenter;
-import com.fiap.soat.ports.ClienteUseCasePort;
-import com.fiap.soat.ports.PedidoUseCasePort;
-import com.fiap.soat.ports.ProdutoUseCasePort;
+import com.fiap.soat.ports.usecases.ClienteUseCasePort;
+import com.fiap.soat.ports.usecases.PedidoUseCasePort;
+import com.fiap.soat.ports.usecases.ProdutoUseCasePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

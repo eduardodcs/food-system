@@ -2,8 +2,8 @@ package com.fiap.soat.usecases;
 
 import com.fiap.soat.entities.FilaPreparo;
 import com.fiap.soat.entities.Pedido;
-import com.fiap.soat.ports.FilaPreparoGatewayPort;
-import com.fiap.soat.ports.FilaPreparoUseCasePort;
+import com.fiap.soat.ports.gateways.FilaPreparoGatewayPort;
+import com.fiap.soat.ports.usecases.FilaPreparoUseCasePort;
 
 import java.time.LocalDateTime;
 

@@ -3,7 +3,7 @@ package com.fiap.soat.controllers;
 import com.fiap.soat.dto.CategoriaDTO;
 import com.fiap.soat.entities.Categoria;
 import com.fiap.soat.presenters.CategoriaPresenter;
-import com.fiap.soat.ports.CategoriaUseCasePort;
+import com.fiap.soat.ports.usecases.CategoriaUseCasePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;

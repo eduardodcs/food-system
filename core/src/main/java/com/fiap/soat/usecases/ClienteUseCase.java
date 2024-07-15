@@ -2,8 +2,8 @@ package com.fiap.soat.usecases;
 
 import com.fiap.soat.entities.Cliente;
 import com.fiap.soat.exceptions.DomainException;
-import com.fiap.soat.ports.ClienteGatewayPort;
-import com.fiap.soat.ports.ClienteUseCasePort;
+import com.fiap.soat.ports.gateways.ClienteGatewayPort;
+import com.fiap.soat.ports.usecases.ClienteUseCasePort;
 
 import java.util.Optional;
 

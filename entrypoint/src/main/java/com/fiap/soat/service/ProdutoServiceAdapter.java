@@ -5,8 +5,8 @@ import com.fiap.soat.entities.Produto;
 import com.fiap.soat.dto.ProdutoDTOResponse;
 import com.fiap.soat.dto.ProdutoDTOReceived;
 import com.fiap.soat.presenters.ProdutoPresenter;
-import com.fiap.soat.ports.CategoriaUseCasePort;
-import com.fiap.soat.ports.ProdutoUseCasePort;
+import com.fiap.soat.ports.usecases.CategoriaUseCasePort;
+import com.fiap.soat.ports.usecases.ProdutoUseCasePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

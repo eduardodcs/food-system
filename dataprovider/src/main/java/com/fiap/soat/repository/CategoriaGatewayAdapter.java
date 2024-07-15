@@ -4,7 +4,7 @@ import com.fiap.soat.entities.Categoria;
 import com.fiap.soat.entities.CategoriaEntity;
 import com.fiap.soat.exceptions.NotFoundException;
 import com.fiap.soat.mapper.CategoriaMapper;
-import com.fiap.soat.ports.CategoriaGatewayPort;
+import com.fiap.soat.ports.gateways.CategoriaGatewayPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

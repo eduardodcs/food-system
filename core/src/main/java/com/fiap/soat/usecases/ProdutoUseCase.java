@@ -2,9 +2,9 @@ package com.fiap.soat.usecases;
 
 import com.fiap.soat.entities.Categoria;
 import com.fiap.soat.entities.Produto;
-import com.fiap.soat.ports.CategoriaUseCasePort;
-import com.fiap.soat.ports.ProdutoGatewayPort;
-import com.fiap.soat.ports.ProdutoUseCasePort;
+import com.fiap.soat.ports.usecases.CategoriaUseCasePort;
+import com.fiap.soat.ports.gateways.ProdutoGatewayPort;
+import com.fiap.soat.ports.usecases.ProdutoUseCasePort;
 
 import java.time.LocalDateTime;
 import java.util.List;

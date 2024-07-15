@@ -4,10 +4,10 @@ import com.fiap.soat.entities.Pedido;
 import com.fiap.soat.enums.StatusPagamento;
 import com.fiap.soat.enums.StatusPedido;
 import com.fiap.soat.exceptions.NotFoundException;
-import com.fiap.soat.ports.FilaPreparoUseCasePort;
-import com.fiap.soat.ports.PagamentoUseCasePort;
-import com.fiap.soat.ports.PedidoGatewayPort;
-import com.fiap.soat.ports.PedidoUseCasePort;
+import com.fiap.soat.ports.usecases.FilaPreparoUseCasePort;
+import com.fiap.soat.ports.usecases.PagamentoUseCasePort;
+import com.fiap.soat.ports.gateways.PedidoGatewayPort;
+import com.fiap.soat.ports.usecases.PedidoUseCasePort;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

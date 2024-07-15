@@ -2,7 +2,7 @@ package com.fiap.soat.controllers;
 
 import com.fiap.soat.dto.ClienteDTO;
 import com.fiap.soat.entities.Cliente;
-import com.fiap.soat.ports.ClienteUseCasePort;
+import com.fiap.soat.ports.usecases.ClienteUseCasePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

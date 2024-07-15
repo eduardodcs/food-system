@@ -1,4 +1,4 @@
-package com.fiap.soat.ports;
+package com.fiap.soat.ports.usecases;
 
 import com.fiap.soat.entities.Produto;
 

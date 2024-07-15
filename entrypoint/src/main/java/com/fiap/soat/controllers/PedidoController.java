@@ -4,7 +4,7 @@ import com.fiap.soat.dto.PedidoDTOReceived;
 import com.fiap.soat.dto.PedidoDTOResponse;
 import com.fiap.soat.entities.Pedido;
 import com.fiap.soat.presenters.PedidoPresenter;
-import com.fiap.soat.ports.PedidoUseCasePort;
+import com.fiap.soat.ports.usecases.PedidoUseCasePort;
 import com.fiap.soat.service.PedidoServiceAdapter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,6 +1,7 @@
 package com.fiap.soat.config;
 
-import com.fiap.soat.ports.*;
+import com.fiap.soat.ports.gateways.*;
+import com.fiap.soat.ports.usecases.*;
 import com.fiap.soat.usecases.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

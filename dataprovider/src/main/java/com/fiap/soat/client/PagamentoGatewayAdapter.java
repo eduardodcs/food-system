@@ -1,6 +1,6 @@
 package com.fiap.soat.client;
 
-import com.fiap.soat.ports.PagamentoGatewayPort;
+import com.fiap.soat.ports.gateways.PagamentoGatewayPort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

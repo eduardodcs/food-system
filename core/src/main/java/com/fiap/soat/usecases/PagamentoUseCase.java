@@ -1,7 +1,7 @@
 package com.fiap.soat.usecases;
 
-import com.fiap.soat.ports.PagamentoGatewayPort;
-import com.fiap.soat.ports.PagamentoUseCasePort;
+import com.fiap.soat.ports.gateways.PagamentoGatewayPort;
+import com.fiap.soat.ports.usecases.PagamentoUseCasePort;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

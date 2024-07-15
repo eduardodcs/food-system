@@ -1,8 +1,8 @@
 package com.fiap.soat.usecases;
 
 import com.fiap.soat.entities.Categoria;
-import com.fiap.soat.ports.CategoriaGatewayPort;
-import com.fiap.soat.ports.CategoriaUseCasePort;
+import com.fiap.soat.ports.gateways.CategoriaGatewayPort;
+import com.fiap.soat.ports.usecases.CategoriaUseCasePort;
 
 import java.util.List;
 

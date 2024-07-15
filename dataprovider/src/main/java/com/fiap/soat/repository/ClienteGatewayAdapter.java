@@ -3,7 +3,7 @@ package com.fiap.soat.repository;
 import com.fiap.soat.entities.Cliente;
 import com.fiap.soat.entities.ClienteEntity;
 import com.fiap.soat.exceptions.NotFoundException;
-import com.fiap.soat.ports.ClienteGatewayPort;
+import com.fiap.soat.ports.gateways.ClienteGatewayPort;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
