@@ -4,7 +4,7 @@ import com.fiap.soat.entities.Pedido;
 
 import java.util.List;
 
-public interface PedidoServicePort {
+public interface PedidoUseCasePort {
 
     Pedido salvarPedido(Pedido pedido);
 

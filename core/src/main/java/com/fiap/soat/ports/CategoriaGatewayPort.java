@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fiap.soat.entities.Categoria;
 
-public interface CategoriaRepositoryPort {
+public interface CategoriaGatewayPort {
 
     List<Categoria> buscarCategorias();
 

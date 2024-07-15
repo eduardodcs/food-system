@@ -1,18 +1,17 @@
-package com.fiap.soat.services;
+package com.fiap.soat.usecases;
 
 import com.fiap.soat.entities.Cliente;
 import com.fiap.soat.exceptions.DomainException;
-import com.fiap.soat.ports.ClienteRepositoryPort;
-import com.fiap.soat.ports.ClienteServicePort;
-import com.fiap.soat.exceptions.NotFoundException;
+import com.fiap.soat.ports.ClienteGatewayPort;
+import com.fiap.soat.ports.ClienteUseCasePort;
 
 import java.util.Optional;
 
-public class ClienteService implements ClienteServicePort {
+public class ClienteUseCase implements ClienteUseCasePort {
 
-    private final ClienteRepositoryPort repositoryPort;
+    private final ClienteGatewayPort repositoryPort;
 
-    public ClienteService(ClienteRepositoryPort repositoryPort) {
+    public ClienteUseCase(ClienteGatewayPort repositoryPort) {
         this.repositoryPort = repositoryPort;
     }
 

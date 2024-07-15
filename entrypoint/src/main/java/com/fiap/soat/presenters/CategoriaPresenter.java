@@ -1,4 +1,4 @@
-package com.fiap.soat.mapper;
+package com.fiap.soat.presenters;
 
 import com.fiap.soat.dto.CategoriaDTO;
 import com.fiap.soat.entities.Categoria;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CategoriaMapper {
+public class CategoriaPresenter {
 
     @Autowired
     private ModelMapper mapper;

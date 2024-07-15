@@ -1,4 +1,4 @@
-package com.fiap.soat.domain.enums;
+package com.fiap.soat.enums;
 
 public enum StatusPagamento {
     PAGAMENTO_PENDENTE, PAGAMENTO_FINALIZADO

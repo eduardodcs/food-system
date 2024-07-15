@@ -1,31 +1,31 @@
-package com.fiap.soat.services;
+package com.fiap.soat.usecases;
 
 import com.fiap.soat.entities.Pedido;
 import com.fiap.soat.enums.StatusPagamento;
 import com.fiap.soat.enums.StatusPedido;
 import com.fiap.soat.exceptions.NotFoundException;
-import com.fiap.soat.ports.FilaPreparoServicePort;
-import com.fiap.soat.ports.PagamentoServicePort;
-import com.fiap.soat.ports.PedidoRepositoryPort;
-import com.fiap.soat.ports.PedidoServicePort;
+import com.fiap.soat.ports.FilaPreparoUseCasePort;
+import com.fiap.soat.ports.PagamentoUseCasePort;
+import com.fiap.soat.ports.PedidoGatewayPort;
+import com.fiap.soat.ports.PedidoUseCasePort;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-public class PedidoService implements PedidoServicePort {
+public class PedidoUseCase implements PedidoUseCasePort {
 
-    private PedidoRepositoryPort pedidoRepositoryPort;
+    private PedidoGatewayPort pedidoGatewayPort;
 
-    private PagamentoServicePort pagamentoServicePort;
+    private PagamentoUseCasePort pagamentoUseCasePort;
 
-    private FilaPreparoServicePort filaPreparoServicePort;
+    private FilaPreparoUseCasePort filaPreparoUseCasePort;
 
-    public PedidoService(PedidoRepositoryPort pedidoRepositoryPort, PagamentoServicePort pagamentoServicePort, FilaPreparoServicePort filaPreparoServicePort) {
-        this.pedidoRepositoryPort = pedidoRepositoryPort;
-        this.pagamentoServicePort = pagamentoServicePort;
-        this.filaPreparoServicePort = filaPreparoServicePort;
+    public PedidoUseCase(PedidoGatewayPort pedidoGatewayPort, PagamentoUseCasePort pagamentoUseCasePort, FilaPreparoUseCasePort filaPreparoUseCasePort) {
+        this.pedidoGatewayPort = pedidoGatewayPort;
+        this.pagamentoUseCasePort = pagamentoUseCasePort;
+        this.filaPreparoUseCasePort = filaPreparoUseCasePort;
     }
 
     @Override
@@ -39,8 +39,8 @@ public class PedidoService implements PedidoServicePort {
         pedido.setStatusPedido(StatusPedido.RECEBIDO);
         pedido.setStatusPagamento(StatusPagamento.PAGAMENTO_PENDENTE);
         pedido.setDataHoraCriacao(LocalDateTime.now());
-        Pedido pedidoSaved = this.pedidoRepositoryPort.criarPedido(pedido);
-        pedidoSaved.setqRCode(pagamentoServicePort.solicitarQRCode(pedidoSaved.getId(), pedidoSaved.getValorTotalPedido(), pedidoSaved.getDataHoraCriacao()));
+        Pedido pedidoSaved = this.pedidoGatewayPort.criarPedido(pedido);
+        pedidoSaved.setqRCode(pagamentoUseCasePort.solicitarQRCode(pedidoSaved.getId(), pedidoSaved.getValorTotalPedido(), pedidoSaved.getDataHoraCriacao()));
         return pedidoSaved;
     }
 
@@ -48,17 +48,17 @@ public class PedidoService implements PedidoServicePort {
     public List<Pedido> buscarPedidoPorStatus(Integer status) {
         StatusPedido statusPedido = Arrays.stream(StatusPedido.values()).filter(x -> x.ordinal() == status.intValue()).findFirst()
                 .orElseThrow(() -> new NotFoundException("Status inválido"));
-        return this.pedidoRepositoryPort.listarPedidoPorStatus(statusPedido);
+        return this.pedidoGatewayPort.listarPedidoPorStatus(statusPedido);
     }
 
     @Override
     public Pedido buscarPedidoPorId(Long id) {
-        return this.pedidoRepositoryPort.buscarPedidoPorId(id);
+        return this.pedidoGatewayPort.buscarPedidoPorId(id);
     }
 
     @Override
     public Pedido atualizarPedido(Pedido pedido) {
-        Pedido pedidoOriginal = this.pedidoRepositoryPort.buscarPedidoPorId(pedido.getId());
+        Pedido pedidoOriginal = this.pedidoGatewayPort.buscarPedidoPorId(pedido.getId());
         pedido.setValorTotalPedido(BigDecimal.ZERO);
         pedido.getListaPedidoProdutos().stream().forEach(pedidoProduto -> {
             pedidoProduto.setSubTotal(pedidoProduto.getPrecoUnitario().multiply(BigDecimal.valueOf(pedidoProduto.getQtdeProduto())));
@@ -67,14 +67,14 @@ public class PedidoService implements PedidoServicePort {
         pedido.setStatusPagamento(pedidoOriginal.getStatusPagamento());
         pedido.setStatusPedido(pedidoOriginal.getStatusPedido());
         pedido.setDataHoraCriacao(pedidoOriginal.getDataHoraCriacao());
-        return this.pedidoRepositoryPort.atualizarPedido(pedido);
+        return this.pedidoGatewayPort.atualizarPedido(pedido);
     }
 
     @Override
     public void cancelarPedido(Long id) {
         Pedido pedido = this.buscarPedidoPorId(id);
         pedido.setStatusPedido(StatusPedido.CANCELADO);
-        this.pedidoRepositoryPort.cancelarPedido(pedido);
+        this.pedidoGatewayPort.cancelarPedido(pedido);
     }
 
     @Override
@@ -82,13 +82,13 @@ public class PedidoService implements PedidoServicePort {
         Pedido pedido = this.buscarPedidoPorId(id);
         pedido.setStatusPagamento(StatusPagamento.PAGAMENTO_FINALIZADO);
         pedido.setStatusPedido(StatusPedido.EM_PREPARACAO);
-        this.pedidoRepositoryPort.atualizarPedido(pedido);
+        this.pedidoGatewayPort.atualizarPedido(pedido);
 
         this.enviarPedidoParaFilaPreparo(pedido);
     }
 
     private void enviarPedidoParaFilaPreparo(Pedido pedido) {
-        this.filaPreparoServicePort.enviarPedidoParaFilaPreparo(pedido);
+        this.filaPreparoUseCasePort.enviarPedidoParaFilaPreparo(pedido);
     }
 
 }

@@ -1,7 +1,5 @@
-package com.fiap.soat.foodsystem.adapter.dto;
+package com.fiap.soat.dto;
 
-import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
-import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

@@ -1,8 +1,8 @@
-package com.fiap.soat.foodsystem.adapter.controllers;
+package com.fiap.soat.controllers;
 
-import com.fiap.soat.foodsystem.adapter.dto.ClienteDTO;
-import com.fiap.soat.foodsystem.domain.model.Cliente;
-import com.fiap.soat.foodsystem.domain.ports.ClienteServicePort;
+import com.fiap.soat.dto.ClienteDTO;
+import com.fiap.soat.entities.Cliente;
+import com.fiap.soat.ports.ClienteUseCasePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -19,11 +19,11 @@ import java.util.Optional;
 @RequestMapping("cliente")
 public class ClienteController {
 
-    private final ClienteServicePort servicePort;
+    private final ClienteUseCasePort servicePort;
     private final ModelMapper mapper;
 
     @Autowired
-    public ClienteController(ClienteServicePort service, ModelMapper mapper) {
+    public ClienteController(ClienteUseCasePort service, ModelMapper mapper) {
         this.servicePort = service;
         this.mapper = mapper;
     }

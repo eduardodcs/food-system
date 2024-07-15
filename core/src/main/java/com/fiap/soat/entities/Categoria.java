@@ -1,4 +1,4 @@
-package com.fiap.soat.model;
+package com.fiap.soat.entities;
 
 public class Categoria {
 

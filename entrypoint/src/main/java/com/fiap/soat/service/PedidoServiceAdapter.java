@@ -1,15 +1,16 @@
-package com.fiap.soat.foodsystem.adapter.service;
+package com.fiap.soat.service;
 
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOReceived;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOResponse;
-import com.fiap.soat.foodsystem.adapter.mapper.PedidoMapper;
-import com.fiap.soat.foodsystem.adapter.mapper.PedidoProdutoMapper;
-import com.fiap.soat.foodsystem.domain.model.Cliente;
-import com.fiap.soat.foodsystem.domain.model.Pedido;
-import com.fiap.soat.foodsystem.domain.model.PedidoProduto;
-import com.fiap.soat.foodsystem.domain.ports.ClienteServicePort;
-import com.fiap.soat.foodsystem.domain.ports.PedidoServicePort;
-import com.fiap.soat.foodsystem.domain.ports.ProdutoServicePort;
+import com.fiap.soat.dto.PedidoDTOReceived;
+import com.fiap.soat.dto.PedidoDTOResponse;
+
+import com.fiap.soat.entities.Cliente;
+import com.fiap.soat.entities.Pedido;
+import com.fiap.soat.entities.PedidoProduto;
+import com.fiap.soat.presenters.PedidoPresenter;
+import com.fiap.soat.presenters.PedidoProdutoPresenter;
+import com.fiap.soat.ports.ClienteUseCasePort;
+import com.fiap.soat.ports.PedidoUseCasePort;
+import com.fiap.soat.ports.ProdutoUseCasePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,54 +22,54 @@ import java.util.concurrent.CompletableFuture;
 public class PedidoServiceAdapter {
 
     @Autowired
-    private PedidoMapper pedidoMapper;
+    private PedidoPresenter pedidoPresenter;
 
     @Autowired
-    private PedidoProdutoMapper pedidoProdutoMapper;
+    private PedidoProdutoPresenter pedidoProdutoPresenter;
 
     @Autowired
-    private PedidoServicePort pedidoServicePort;
+    private PedidoUseCasePort pedidoUseCasePort;
 
     @Autowired
-    private ProdutoServicePort produtoServicePort;
+    private ProdutoUseCasePort produtoUseCasePort;
 
     @Autowired
-    private ClienteServicePort clienteServicePort;
+    private ClienteUseCasePort clienteUseCasePort;
 
     public PedidoDTOResponse salvarPedido(PedidoDTOReceived pedidoDTOReceived) {
-        Pedido pedido = this.pedidoMapper.pedidoDTOReceivedToPedido(pedidoDTOReceived);
+        Pedido pedido = this.pedidoPresenter.pedidoDTOReceivedToPedido(pedidoDTOReceived);
         if (!Objects.isNull(pedidoDTOReceived.getIdCliente())) {
-            Cliente cliente = this.clienteServicePort.obterClientePorId(pedidoDTOReceived.getIdCliente());
+            Cliente cliente = this.clienteUseCasePort.obterClientePorId(pedidoDTOReceived.getIdCliente());
             pedido.setCliente(cliente);
         }
         List<PedidoProduto> listaPedidoProduto = pedidoDTOReceived.getListaPedidoProduto().stream().map(pedidoProdutoDTOreceived -> {
-            PedidoProduto pedidoProduto = this.pedidoProdutoMapper.pedidoProdutoDTOReceivedTOPedidoProduto(pedidoProdutoDTOreceived);
-            pedidoProduto.setProduto(this.produtoServicePort.buscarProdutoPorId(pedidoProdutoDTOreceived.getIdProduto()));
+            PedidoProduto pedidoProduto = this.pedidoProdutoPresenter.pedidoProdutoDTOReceivedTOPedidoProduto(pedidoProdutoDTOreceived);
+            pedidoProduto.setProduto(this.produtoUseCasePort.buscarProdutoPorId(pedidoProdutoDTOreceived.getIdProduto()));
             return pedidoProduto;
         }).toList();
         pedido.setListaPedidoProdutos(listaPedidoProduto);
-        Pedido pedidoSalvo = this.pedidoServicePort.salvarPedido(pedido);
+        Pedido pedidoSalvo = this.pedidoUseCasePort.salvarPedido(pedido);
         this.fakeCallbackPagamento(pedidoSalvo.getId());
-        return this.pedidoMapper.pedidoToPedidoDTOResponse(pedidoSalvo);
+        return this.pedidoPresenter.pedidoToPedidoDTOResponse(pedidoSalvo);
     }
 
     public PedidoDTOResponse atualizarPedido(PedidoDTOReceived pedidoDTOReceived) {
-        Pedido pedido = this.pedidoMapper.pedidoDTOReceivedToPedido(pedidoDTOReceived);
+        Pedido pedido = this.pedidoPresenter.pedidoDTOReceivedToPedido(pedidoDTOReceived);
         if (!Objects.isNull(pedidoDTOReceived.getIdCliente())) {
-            Cliente cliente = this.clienteServicePort.obterClientePorId(pedidoDTOReceived.getIdCliente());
+            Cliente cliente = this.clienteUseCasePort.obterClientePorId(pedidoDTOReceived.getIdCliente());
             pedido.setCliente(cliente);
         }
         List<PedidoProduto> listaPedidoProduto = pedidoDTOReceived.getListaPedidoProduto().stream().map(pedidoProdutoDTOreceived -> {
-            PedidoProduto pedidoProduto = this.pedidoProdutoMapper.pedidoProdutoDTOReceivedTOPedidoProduto(pedidoProdutoDTOreceived);
-            pedidoProduto.setProduto(this.produtoServicePort.buscarProdutoPorId(pedidoProdutoDTOreceived.getIdProduto()));
+            PedidoProduto pedidoProduto = this.pedidoProdutoPresenter.pedidoProdutoDTOReceivedTOPedidoProduto(pedidoProdutoDTOreceived);
+            pedidoProduto.setProduto(this.produtoUseCasePort.buscarProdutoPorId(pedidoProdutoDTOreceived.getIdProduto()));
             return pedidoProduto;
         }).toList();
         pedido.setListaPedidoProdutos(listaPedidoProduto);
-        return this.pedidoMapper.pedidoToPedidoDTOResponse(this.pedidoServicePort.atualizarPedido(pedido));
+        return this.pedidoPresenter.pedidoToPedidoDTOResponse(this.pedidoUseCasePort.atualizarPedido(pedido));
     }
 
     public void confirmarPagamento(Long id) {
-        this.pedidoServicePort.confirmarPagamento(id);
+        this.pedidoUseCasePort.confirmarPagamento(id);
     }
 
 
@@ -86,7 +87,7 @@ public class PedidoServiceAdapter {
                     //TODO Aqui é necessário atualizar o status conforme algum ENUM correspondente
                     codigo++;
                     if (codigo == 3) {
-                        this.pedidoServicePort.confirmarPagamento(id);
+                        this.pedidoUseCasePort.confirmarPagamento(id);
                         return;
                     }
                 } catch (InterruptedException e) {

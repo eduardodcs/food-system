@@ -1,7 +1,8 @@
-package com.fiap.soat.model;
+package com.fiap.soat.entities;
 
-import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
-import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
+
+import com.fiap.soat.enums.StatusPagamento;
+import com.fiap.soat.enums.StatusPedido;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

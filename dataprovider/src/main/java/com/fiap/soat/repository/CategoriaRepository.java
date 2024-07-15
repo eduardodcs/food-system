@@ -1,9 +1,9 @@
-package com.fiap.soat.foodsystem.adapter.infra.repository;
+package com.fiap.soat.repository;
 
 
+import com.fiap.soat.entities.CategoriaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.fiap.soat.foodsystem.adapter.entities.CategoriaEntity;
 
 public interface CategoriaRepository extends JpaRepository<CategoriaEntity, Long> {
 

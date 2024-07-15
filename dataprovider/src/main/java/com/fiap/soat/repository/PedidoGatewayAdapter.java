@@ -5,14 +5,14 @@ import com.fiap.soat.entities.PedidoEntity;
 import com.fiap.soat.enums.StatusPedido;
 import com.fiap.soat.exceptions.NotFoundException;
 import com.fiap.soat.mapper.PedidoMapper;
-import com.fiap.soat.ports.PedidoRepositoryPort;
+import com.fiap.soat.ports.PedidoGatewayPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class PedidoRepositoryAdapter implements PedidoRepositoryPort {
+public class PedidoGatewayAdapter implements PedidoGatewayPort {
 
     @Autowired
     private PedidoRepository pedidoRepository;

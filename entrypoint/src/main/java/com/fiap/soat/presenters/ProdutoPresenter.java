@@ -1,4 +1,4 @@
-package com.fiap.soat.mapper;
+package com.fiap.soat.presenters;
 
 import com.fiap.soat.dto.CategoriaDTO;
 import com.fiap.soat.dto.ProdutoDTOReceived;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProdutoMapper {
+public class ProdutoPresenter {
 
     @Autowired
     private ModelMapper mapper;

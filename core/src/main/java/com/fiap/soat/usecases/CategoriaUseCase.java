@@ -1,16 +1,16 @@
-package com.fiap.soat.services;
+package com.fiap.soat.usecases;
 
 import com.fiap.soat.entities.Categoria;
-import com.fiap.soat.ports.CategoriaRepositoryPort;
-import com.fiap.soat.ports.CategoriaServicePort;
+import com.fiap.soat.ports.CategoriaGatewayPort;
+import com.fiap.soat.ports.CategoriaUseCasePort;
 
 import java.util.List;
 
-public class CategoriaService implements CategoriaServicePort {
+public class CategoriaUseCase implements CategoriaUseCasePort {
 
-    private CategoriaRepositoryPort categoriaRepositoryPort;
+    private CategoriaGatewayPort categoriaRepositoryPort;
 
-    public CategoriaService(CategoriaRepositoryPort categoriaRepositoryPort) {
+    public CategoriaUseCase(CategoriaGatewayPort categoriaRepositoryPort) {
         this.categoriaRepositoryPort = categoriaRepositoryPort;
     }
 

@@ -1,9 +1,9 @@
-package com.fiap.soat.foodsystem.adapter.controllers;
+package com.fiap.soat.controllers;
 
-import com.fiap.soat.foodsystem.adapter.dto.CategoriaDTO;
-import com.fiap.soat.foodsystem.adapter.mapper.CategoriaMapper;
-import com.fiap.soat.foodsystem.domain.model.Categoria;
-import com.fiap.soat.foodsystem.domain.ports.CategoriaServicePort;
+import com.fiap.soat.dto.CategoriaDTO;
+import com.fiap.soat.entities.Categoria;
+import com.fiap.soat.presenters.CategoriaPresenter;
+import com.fiap.soat.ports.CategoriaUseCasePort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
@@ -20,25 +20,25 @@ import java.util.List;
 public class CategoriaController {
 
     @Autowired
-    private CategoriaServicePort categoriaServicePort;
+    private CategoriaUseCasePort categoriaUseCasePort;
 
     @Autowired
-    private CategoriaMapper categoriaMapper;
+    private CategoriaPresenter categoriaPresenter;
 
     @GetMapping()
     @Tag(name = "Categoria")
     @Operation(summary = "Buscar lista de categorias disponíveis")
     public ResponseEntity<List<CategoriaDTO>> buscarCategorias() {
-        List<Categoria> listaCategoria = this.categoriaServicePort.buscarCategorias();
-        return ResponseEntity.ok(listaCategoria.stream().map(categoria -> categoriaMapper.categoriaToCategoriaDTO(categoria)).toList());
+        List<Categoria> listaCategoria = this.categoriaUseCasePort.buscarCategorias();
+        return ResponseEntity.ok(listaCategoria.stream().map(categoria -> categoriaPresenter.categoriaToCategoriaDTO(categoria)).toList());
     }
 
     @GetMapping("{id}")
     @Tag(name = "Categoria")
     @Operation(summary = "Buscar categoria por Id")
     public ResponseEntity<CategoriaDTO> buscarCategoriaPorId(@PathVariable Long id) {
-        Categoria categoria = this.categoriaServicePort.buscarCategoriaPorId(id);
-        return ResponseEntity.ok(categoriaMapper.categoriaToCategoriaDTO(categoria));
+        Categoria categoria = this.categoriaUseCasePort.buscarCategoriaPorId(id);
+        return ResponseEntity.ok(categoriaPresenter.categoriaToCategoriaDTO(categoria));
     }
 
     @PutMapping
@@ -46,8 +46,8 @@ public class CategoriaController {
     @Tag(name = "Categoria")
     @Operation(summary = "Editar cadastro de categoria")
     public ResponseEntity<CategoriaDTO> editarCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO) {
-        Categoria categoria = this.categoriaServicePort.editarCategoria(categoriaMapper.categoriaDTOToCategoria(categoriaDTO));
-        return ResponseEntity.ok(categoriaMapper.categoriaToCategoriaDTO(categoria));
+        Categoria categoria = this.categoriaUseCasePort.editarCategoria(categoriaPresenter.categoriaDTOToCategoria(categoriaDTO));
+        return ResponseEntity.ok(categoriaPresenter.categoriaToCategoriaDTO(categoria));
     }
 
     @PostMapping
@@ -55,8 +55,8 @@ public class CategoriaController {
     @Tag(name = "Categoria")
     @Operation(summary = "Cadastrar categoria")
     public ResponseEntity<CategoriaDTO> cadatrarCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO) {
-        Categoria categoria = this.categoriaServicePort.salvarCategoria(categoriaMapper.categoriaDTOToCategoria(categoriaDTO));
-        return ResponseEntity.ok(categoriaMapper.categoriaToCategoriaDTO(categoria));
+        Categoria categoria = this.categoriaUseCasePort.salvarCategoria(categoriaPresenter.categoriaDTOToCategoria(categoriaDTO));
+        return ResponseEntity.ok(categoriaPresenter.categoriaToCategoriaDTO(categoria));
     }
 
 
@@ -66,7 +66,7 @@ public class CategoriaController {
     @Operation(summary = "Ativar / Inativar categoria")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void inativarCategoria(@PathVariable Long id) {
-        this.categoriaServicePort.inativarCategoria(id);
+        this.categoriaUseCasePort.inativarCategoria(id);
     }
 
 }

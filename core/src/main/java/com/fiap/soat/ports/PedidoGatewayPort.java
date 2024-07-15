@@ -5,7 +5,7 @@ import com.fiap.soat.entities.Pedido;
 
 import java.util.List;
 
-public interface PedidoRepositoryPort {
+public interface PedidoGatewayPort {
 
     Pedido criarPedido(Pedido pedido);
 

@@ -1,7 +1,7 @@
-package com.fiap.soat.foodsystem.adapter.dto;
+package com.fiap.soat.dto;
 
-import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
-import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
+import com.fiap.soat.enums.StatusPagamento;
+import com.fiap.soat.enums.StatusPedido;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

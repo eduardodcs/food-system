@@ -1,4 +1,4 @@
-package com.fiap.soat.foodsystem.adapter.dto;
+package com.fiap.soat.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

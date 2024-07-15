@@ -1,4 +1,4 @@
-package com.fiap.soat.mapper;
+package com.fiap.soat.presenters;
 
 
 import com.fiap.soat.dto.ClienteDTO;
@@ -15,21 +15,21 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class PedidoMapper {
+public class PedidoPresenter {
 
     @Autowired
     private ModelMapper mapper;
 
     @Autowired
-    private ClienteMapper clienteMapper;
+    private ClientePresenter clientePresenter;
 
     @Autowired
-    private PedidoProdutoMapper pedidoProdutoMapper;
+    private PedidoProdutoPresenter pedidoProdutoPresenter;
 
     public Pedido pedidoDTOResponseToPedido(PedidoDTOResponse pedidoDTOResponse) {
-        Cliente cliente = clienteMapper.clienteDTOToCliente(pedidoDTOResponse.getCliente());
+        Cliente cliente = clientePresenter.clienteDTOToCliente(pedidoDTOResponse.getCliente());
         List<PedidoProduto> listaPedidoProduto = pedidoDTOResponse.getListaPedidoProduto().stream()
-                .map(pedidoProdutoDTOResponse -> pedidoProdutoMapper.pedidoProdutoDTOResponseToPedidoProduto(pedidoProdutoDTOResponse)).toList();
+                .map(pedidoProdutoDTOResponse -> pedidoProdutoPresenter.pedidoProdutoDTOResponseToPedidoProduto(pedidoProdutoDTOResponse)).toList();
         Pedido pedido = mapper.map(pedidoDTOResponse, Pedido.class);
         pedido.setCliente(cliente);
         pedido.setListaPedidoProdutos(listaPedidoProduto);
@@ -38,9 +38,9 @@ public class PedidoMapper {
 
     public PedidoDTOResponse pedidoToPedidoDTOResponse(Pedido pedido) {
         PedidoDTOResponse pedidoDTOResponse = mapper.map(pedido, PedidoDTOResponse.class);
-        ClienteDTO clienteDTO = clienteMapper.clienteToClienteDTO(pedido.getCliente());
+        ClienteDTO clienteDTO = clientePresenter.clienteToClienteDTO(pedido.getCliente());
         List<PedidoProdutoDTOResponse> listaPedidoProdutoDTOResponse = pedido.getListaPedidoProdutos().stream()
-                .map(pedidoProduto -> pedidoProdutoMapper.peditoProdutoToPedidoProdutoDTOResponse(pedidoProduto, pedidoDTOResponse)).toList();
+                .map(pedidoProduto -> pedidoProdutoPresenter.peditoProdutoToPedidoProdutoDTOResponse(pedidoProduto, pedidoDTOResponse)).toList();
         pedidoDTOResponse.setCliente(clienteDTO);
         pedidoDTOResponse.setListaPedidoProduto(listaPedidoProdutoDTOResponse);
         return pedidoDTOResponse;

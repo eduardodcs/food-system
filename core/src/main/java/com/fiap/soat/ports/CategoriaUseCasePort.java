@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fiap.soat.entities.Categoria;
 
-public interface CategoriaServicePort {
+public interface CategoriaUseCasePort {
 
     Categoria salvarCategoria(Categoria categoria);
 

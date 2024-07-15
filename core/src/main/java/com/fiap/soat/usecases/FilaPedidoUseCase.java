@@ -1,18 +1,18 @@
-package com.fiap.soat.services;
+package com.fiap.soat.usecases;
 
 import com.fiap.soat.entities.FilaPreparo;
 import com.fiap.soat.entities.Pedido;
-import com.fiap.soat.ports.FilaPreparoRepositoryPort;
-import com.fiap.soat.ports.FilaPreparoServicePort;
+import com.fiap.soat.ports.FilaPreparoGatewayPort;
+import com.fiap.soat.ports.FilaPreparoUseCasePort;
 
 import java.time.LocalDateTime;
 
-public class FilaPedidoService implements FilaPreparoServicePort {
+public class FilaPedidoUseCase implements FilaPreparoUseCasePort {
 
-    private FilaPreparoRepositoryPort filaPreparoRepositoryPort;
+    private FilaPreparoGatewayPort filaPreparoGatewayPort;
 
-    public FilaPedidoService(FilaPreparoRepositoryPort filaPreparoRepositoryPort) {
-        this.filaPreparoRepositoryPort = filaPreparoRepositoryPort;
+    public FilaPedidoUseCase(FilaPreparoGatewayPort filaPreparoGatewayPort) {
+        this.filaPreparoGatewayPort = filaPreparoGatewayPort;
     }
 
     @Override
@@ -20,6 +20,6 @@ public class FilaPedidoService implements FilaPreparoServicePort {
         FilaPreparo filaPreparo = new FilaPreparo();
         filaPreparo.setPedido(pedido);
         filaPreparo.setDataHoraCriacao(LocalDateTime.now());
-        this.filaPreparoRepositoryPort.enviarPedidoParaFilaPreparo(filaPreparo);
+        this.filaPreparoGatewayPort.enviarPedidoParaFilaPreparo(filaPreparo);
     }
 }

@@ -1,4 +1,4 @@
-package com.fiap.soat.foodsystem.adapter.dto;
+package com.fiap.soat.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

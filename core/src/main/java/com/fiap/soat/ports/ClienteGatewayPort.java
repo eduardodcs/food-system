@@ -4,7 +4,7 @@ import com.fiap.soat.entities.Cliente;
 
 import java.util.Optional;
 
-public interface ClienteRepositoryPort {
+public interface ClienteGatewayPort {
     Optional<Cliente> buscarPorCpf(String cpf);
     Cliente buscarPorId(Long id);
     String salvar(Cliente cliente);

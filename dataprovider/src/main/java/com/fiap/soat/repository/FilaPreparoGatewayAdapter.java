@@ -3,14 +3,12 @@ package com.fiap.soat.repository;
 import com.fiap.soat.entities.FilaPreparo;
 import com.fiap.soat.entities.FilaPreparoEntity;
 import com.fiap.soat.mapper.PedidoMapper;
-import com.fiap.soat.ports.FilaPreparoRepositoryPort;
+import com.fiap.soat.ports.FilaPreparoGatewayPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Component
-public class FilaPreparoRepositoryAdapter implements FilaPreparoRepositoryPort {
+public class FilaPreparoGatewayAdapter implements FilaPreparoGatewayPort {
 
     @Autowired
     private FilaPreparoRepository filaPreparoRepository;

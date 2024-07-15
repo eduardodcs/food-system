@@ -1,6 +1,6 @@
 package com.fiap.soat.client;
 
-import com.fiap.soat.ports.PagamentoClientPort;
+import com.fiap.soat.ports.PagamentoGatewayPort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 @Service
-public class PagamentoClientAdapter implements PagamentoClientPort {
+public class PagamentoGatewayAdapter implements PagamentoGatewayPort {
     @Override
     public String solicitarQRCode(Long idPedido, BigDecimal valor, LocalDateTime dataHoraPedido) {
         // FAKE - Simulando a chamado ao serviço externo de pagamento

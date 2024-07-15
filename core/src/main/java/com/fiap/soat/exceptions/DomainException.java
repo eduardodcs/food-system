@@ -1,4 +1,4 @@
-package com.fiap.soat.foodsystem.common.exception;
+package com.fiap.soat.exceptions;
 
 public class DomainException extends RuntimeException {
 

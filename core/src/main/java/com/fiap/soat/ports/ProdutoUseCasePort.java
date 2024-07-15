@@ -4,7 +4,7 @@ import com.fiap.soat.entities.Produto;
 
 import java.util.List;
 
-public interface ProdutoServicePort {
+public interface ProdutoUseCasePort {
 
     List<Produto> buscarProdutosPorCategoria(Long categoriaId);
 

@@ -7,15 +7,14 @@ import com.fiap.soat.entities.ProdutoEntity;
 import com.fiap.soat.exceptions.NotFoundException;
 import com.fiap.soat.mapper.CategoriaMapper;
 import com.fiap.soat.mapper.ProdutoMapper;
-import com.fiap.soat.ports.ProdutoRepositoryPort;
+import com.fiap.soat.ports.ProdutoGatewayPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
-public class ProdutoRepositoryAdapter implements ProdutoRepositoryPort {
+public class ProdutoGatewayAdapter implements ProdutoGatewayPort {
 
     @Autowired
     private ProdutoRepository produtoRepository;

@@ -1,8 +1,5 @@
-package com.fiap.soat.foodsystem.adapter.entities;
+package com.fiap.soat.entities;
 
-
-import com.fiap.soat.foodsystem.domain.model.Pedido;
-import com.fiap.soat.foodsystem.domain.model.Produto;
 import jakarta.persistence.*;
 import lombok.*;
 

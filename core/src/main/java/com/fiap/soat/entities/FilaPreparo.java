@@ -1,4 +1,4 @@
-package com.fiap.soat.model;
+package com.fiap.soat.entities;
 
 import java.time.LocalDateTime;
 

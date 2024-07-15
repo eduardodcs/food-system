@@ -4,7 +4,7 @@ import com.fiap.soat.entities.Cliente;
 
 import java.util.Optional;
 
-public interface ClienteServicePort {
+public interface ClienteUseCasePort {
     Cliente consultarClientePorCpf(String cpf);
 
     Optional<Cliente> cadastrar(Cliente cliente);

@@ -5,7 +5,7 @@ import com.fiap.soat.entities.Produto;
 
 import java.util.List;
 
-public interface ProdutoRepositoryPort {
+public interface ProdutoGatewayPort {
 
     List<Produto> buscarProdutosPorCategoria(Categoria categoria);
 

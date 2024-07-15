@@ -1,4 +1,4 @@
-package com.fiap.soat.foodsystem.common.exception;
+package com.fiap.soat.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

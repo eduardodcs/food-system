@@ -1,4 +1,4 @@
-package com.fiap.soat.foodsystem.adapter.entities;
+package com.fiap.soat.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

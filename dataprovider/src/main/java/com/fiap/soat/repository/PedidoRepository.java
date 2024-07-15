@@ -1,7 +1,7 @@
-package com.fiap.soat.foodsystem.adapter.infra.repository;
+package com.fiap.soat.repository;
 
-import com.fiap.soat.foodsystem.adapter.entities.PedidoEntity;
-import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
+import com.fiap.soat.entities.PedidoEntity;
+import com.fiap.soat.enums.StatusPedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,8 +1,7 @@
-package com.fiap.soat.foodsystem.adapter.infra.config;
+package com.fiap.soat.config;
 
-import com.fiap.soat.foodsystem.adapter.service.PedidoServiceAdapter;
-import com.fiap.soat.foodsystem.domain.ports.*;
-import com.fiap.soat.foodsystem.domain.services.*;
+import com.fiap.soat.ports.*;
+import com.fiap.soat.usecases.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,32 +15,34 @@ public class BeansConfig {
 	}
 
 	@Bean
-	public ClienteServicePort clienteServicePort(ClienteRepositoryPort clienteRepositoryPort) {
-		return new ClienteService(clienteRepositoryPort);
+	public ClienteUseCasePort clienteServicePort(ClienteGatewayPort clienteGatewayPort) {
+		return new ClienteUseCase(clienteGatewayPort);
   	}
 
 	@Bean
-	public ProdutoServicePort produtoServicePort(ProdutoRepositoryPort produtoRepositoryPort, CategoriaServicePort categoriaServicePort) {
-		return new ProdutoService(produtoRepositoryPort, categoriaServicePort);
+	public ProdutoUseCasePort produtoServicePort(ProdutoGatewayPort produtoGatewayPort, CategoriaUseCasePort categoriaUseCasePort) {
+		return new ProdutoUseCase(produtoGatewayPort, categoriaUseCasePort);
 	}
 
 	@Bean
-	public CategoriaServicePort categoriaServicePort(CategoriaRepositoryPort categoriaRepositoryPort) {
-		return new CategoriaService(categoriaRepositoryPort);
+	public CategoriaUseCasePort categoriaServicePort(CategoriaGatewayPort categoriaRepositoryPort) {
+		return new CategoriaUseCase(categoriaRepositoryPort);
 	}
 
 	@Bean
-	public PedidoServicePort pedidoServicePort(PedidoRepositoryPort pedidoRepositoryPort, PagamentoServicePort pagamentoServicePort,
-											   FilaPreparoServicePort filaPreparoServicePort) {
-		return new PedidoService(pedidoRepositoryPort, pagamentoServicePort, filaPreparoServicePort);
+	public PedidoUseCasePort pedidoServicePort(PedidoGatewayPort pedidoGatewayPort, PagamentoUseCasePort pagamentoUseCasePort,
+											   FilaPreparoUseCasePort filaPreparoUseCasePort) {
+		return new PedidoUseCase(pedidoGatewayPort, pagamentoUseCasePort, filaPreparoUseCasePort);
 	}
 
-	@Bean PagamentoServicePort pagamentoServicePort(PagamentoClientPort pagamentoClientPort) {
-		return new PagamentoService(pagamentoClientPort);
+	@Bean
+	PagamentoUseCasePort pagamentoServicePort(PagamentoGatewayPort pagamentoGatewayPort) {
+		return new PagamentoUseCase(pagamentoGatewayPort);
 	}
 
-	@Bean FilaPreparoServicePort filaPreparoServicePort(FilaPreparoRepositoryPort filaPreparoRepositoryPort) {
-		return new FilaPedidoService(filaPreparoRepositoryPort);
+	@Bean
+	FilaPreparoUseCasePort filaPreparoServicePort(FilaPreparoGatewayPort filaPreparoGatewayPort) {
+		return new FilaPedidoUseCase(filaPreparoGatewayPort);
 	}
 
 

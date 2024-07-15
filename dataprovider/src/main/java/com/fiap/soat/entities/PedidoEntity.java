@@ -1,7 +1,7 @@
-package com.fiap.soat.foodsystem.adapter.entities;
+package com.fiap.soat.entities;
 
-import com.fiap.soat.foodsystem.domain.enums.StatusPagamento;
-import com.fiap.soat.foodsystem.domain.enums.StatusPedido;
+import com.fiap.soat.enums.StatusPagamento;
+import com.fiap.soat.enums.StatusPedido;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

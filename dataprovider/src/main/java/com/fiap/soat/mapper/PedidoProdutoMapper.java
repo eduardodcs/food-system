@@ -1,14 +1,6 @@
-package com.fiap.soat.foodsystem.adapter.mapper;
+package com.fiap.soat.mapper;
 
-import com.fiap.soat.foodsystem.adapter.dto.*;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoEntity;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoProdutoEntity;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoProdutoEntityId;
-import com.fiap.soat.foodsystem.adapter.entities.ProdutoEntity;
-import com.fiap.soat.foodsystem.domain.model.Categoria;
-import com.fiap.soat.foodsystem.domain.model.Pedido;
-import com.fiap.soat.foodsystem.domain.model.PedidoProduto;
-import com.fiap.soat.foodsystem.domain.model.Produto;
+import com.fiap.soat.entities.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,21 +12,6 @@ public class PedidoProdutoMapper {
 
     @Autowired
     private ModelMapper mapper;
-
-    public PedidoProdutoDTOResponse peditoProdutoToPedidoProdutoDTOResponse(PedidoProduto pedidoProduto, PedidoDTOResponse pedidoDTOResponse) {
-        PedidoProdutoDTOResponse pedidoProdutoDTOResponse = mapper.map(pedidoProduto, PedidoProdutoDTOResponse.class);
-        pedidoProdutoDTOResponse.setProduto(mapper.map(pedidoProduto.getProduto(), ProdutoDTOResponse.class));
-        pedidoProdutoDTOResponse.getProduto().setCategoriaDTO(this.mapper.map(pedidoProduto.getProduto().getCategoria(), CategoriaDTO.class));
-        return pedidoProdutoDTOResponse;
-    }
-
-    public PedidoProduto pedidoProdutoDTOResponseToPedidoProduto(PedidoProdutoDTOResponse pedidoProdutoDTOResponse) {
-        return mapper.map(pedidoProdutoDTOResponse, PedidoProduto.class);
-    }
-
-    public PedidoProduto pedidoProdutoDTOReceivedTOPedidoProduto(PedidoProdutoDTOReceived pedidoProdutoDTOReceived) {
-        return mapper.map(pedidoProdutoDTOReceived, PedidoProduto.class);
-    }
 
     public PedidoProdutoEntity pedidoProdutoToPedidoProdutoEntity(PedidoProduto pedidoProduto, PedidoEntity pedidoEntity) {
         PedidoProdutoEntity pedidoProdutoEntity = new PedidoProdutoEntity();

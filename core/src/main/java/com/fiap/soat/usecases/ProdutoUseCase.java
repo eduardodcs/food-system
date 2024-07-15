@@ -1,28 +1,28 @@
-package com.fiap.soat.services;
+package com.fiap.soat.usecases;
 
 import com.fiap.soat.entities.Categoria;
 import com.fiap.soat.entities.Produto;
-import com.fiap.soat.ports.CategoriaServicePort;
-import com.fiap.soat.ports.ProdutoRepositoryPort;
-import com.fiap.soat.ports.ProdutoServicePort;
+import com.fiap.soat.ports.CategoriaUseCasePort;
+import com.fiap.soat.ports.ProdutoGatewayPort;
+import com.fiap.soat.ports.ProdutoUseCasePort;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ProdutoService implements ProdutoServicePort  {
+public class ProdutoUseCase implements ProdutoUseCasePort {
 
-    private ProdutoRepositoryPort produtoRepositoryPort;
+    private ProdutoGatewayPort produtoGatewayPort;
 
-    private CategoriaServicePort categoriaServicePort;
+    private CategoriaUseCasePort categoriaUseCasePort;
 
-    public ProdutoService(ProdutoRepositoryPort produtoRepositoryPort, CategoriaServicePort categoriaServicePort) {
-        this.produtoRepositoryPort = produtoRepositoryPort;
-        this.categoriaServicePort = categoriaServicePort;
+    public ProdutoUseCase(ProdutoGatewayPort produtoGatewayPort, CategoriaUseCasePort categoriaUseCasePort) {
+        this.produtoGatewayPort = produtoGatewayPort;
+        this.categoriaUseCasePort = categoriaUseCasePort;
     }
 
     @Override
     public Produto buscarProdutoPorId(Long id) {
-        return this.produtoRepositoryPort.buscarProdutoPorId(id);
+        return this.produtoGatewayPort.buscarProdutoPorId(id);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ProdutoService implements ProdutoServicePort  {
         produto.setId(null);
         produto.setStatusAtivo(true);
         produto.setDataHoraCriacao(LocalDateTime.now());
-        return this.produtoRepositoryPort.salvarProduto(produto);
+        return this.produtoGatewayPort.salvarProduto(produto);
     }
 
     @Override
@@ -40,20 +40,20 @@ public class ProdutoService implements ProdutoServicePort  {
         produtoOriginal.setDescricao(produto.getDescricao());
         produtoOriginal.setPreco(produto.getPreco());
         produtoOriginal.setCategoria(produto.getCategoria());
-        return this.produtoRepositoryPort.editarProduto(produtoOriginal);
+        return this.produtoGatewayPort.editarProduto(produtoOriginal);
     }
 
     @Override
     public void inativarProduto(Long id) {
         Produto produto = this.buscarProdutoPorId(id);
         produto.setStatusAtivo(!produto.isStatusAtivo());
-        this.produtoRepositoryPort.salvarProduto(produto);
+        this.produtoGatewayPort.salvarProduto(produto);
     }
 
     @Override
     public List<Produto> buscarProdutosPorCategoria(Long categoriaId) {
-        Categoria categoria = this.categoriaServicePort.buscarCategoriaPorId(categoriaId);
-        return this.produtoRepositoryPort.buscarProdutosPorCategoria(categoria);
+        Categoria categoria = this.categoriaUseCasePort.buscarCategoriaPorId(categoriaId);
+        return this.produtoGatewayPort.buscarProdutosPorCategoria(categoria);
     }
 
 }

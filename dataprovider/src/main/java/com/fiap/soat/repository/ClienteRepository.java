@@ -1,6 +1,6 @@
-package com.fiap.soat.foodsystem.adapter.infra.repository;
+package com.fiap.soat.repository;
 
-import com.fiap.soat.foodsystem.adapter.entities.ClienteEntity;
+import com.fiap.soat.entities.ClienteEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

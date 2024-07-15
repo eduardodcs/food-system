@@ -1,15 +1,6 @@
-package com.fiap.soat.foodsystem.adapter.mapper;
+package com.fiap.soat.mapper;
 
-import com.fiap.soat.foodsystem.adapter.dto.ClienteDTO;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOReceived;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoDTOResponse;
-import com.fiap.soat.foodsystem.adapter.dto.PedidoProdutoDTOResponse;
-import com.fiap.soat.foodsystem.adapter.entities.ClienteEntity;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoEntity;
-import com.fiap.soat.foodsystem.adapter.entities.PedidoProdutoEntity;
-import com.fiap.soat.foodsystem.domain.model.Cliente;
-import com.fiap.soat.foodsystem.domain.model.Pedido;
-import com.fiap.soat.foodsystem.domain.model.PedidoProduto;
+import com.fiap.soat.entities.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,30 +18,6 @@ public class PedidoMapper {
 
     @Autowired
     private PedidoProdutoMapper pedidoProdutoMapper;
-
-    public Pedido pedidoDTOResponseToPedido(PedidoDTOResponse pedidoDTOResponse) {
-        Cliente cliente = clienteMapper.clienteDTOToCliente(pedidoDTOResponse.getCliente());
-        List<PedidoProduto> listaPedidoProduto = pedidoDTOResponse.getListaPedidoProduto().stream()
-                .map(pedidoProdutoDTOResponse -> pedidoProdutoMapper.pedidoProdutoDTOResponseToPedidoProduto(pedidoProdutoDTOResponse)).toList();
-        Pedido pedido = mapper.map(pedidoDTOResponse, Pedido.class);
-        pedido.setCliente(cliente);
-        pedido.setListaPedidoProdutos(listaPedidoProduto);
-        return pedido;
-    }
-
-    public PedidoDTOResponse pedidoToPedidoDTOResponse(Pedido pedido) {
-        PedidoDTOResponse pedidoDTOResponse = mapper.map(pedido, PedidoDTOResponse.class);
-        ClienteDTO clienteDTO = clienteMapper.clienteToClienteDTO(pedido.getCliente());
-        List<PedidoProdutoDTOResponse> listaPedidoProdutoDTOResponse = pedido.getListaPedidoProdutos().stream()
-                .map(pedidoProduto -> pedidoProdutoMapper.peditoProdutoToPedidoProdutoDTOResponse(pedidoProduto, pedidoDTOResponse)).toList();
-        pedidoDTOResponse.setCliente(clienteDTO);
-        pedidoDTOResponse.setListaPedidoProduto(listaPedidoProdutoDTOResponse);
-        return pedidoDTOResponse;
-    }
-
-    public Pedido pedidoDTOReceivedToPedido(PedidoDTOReceived pedidoDTOReceived) {
-        return mapper.map(pedidoDTOReceived, Pedido.class);
-    }
 
     public PedidoEntity pedidoToPedidoEntity(Pedido pedido) {
         PedidoEntity pedidoEntity = mapper.map(pedido, PedidoEntity.class);

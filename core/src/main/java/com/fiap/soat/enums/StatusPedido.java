@@ -1,8 +1,5 @@
-package com.fiap.soat.domain.enums;
+package com.fiap.soat.enums;
 
-import lombok.Getter;
-
-@Getter
 public enum StatusPedido {
 
     RECEBIDO("Recebido"),
