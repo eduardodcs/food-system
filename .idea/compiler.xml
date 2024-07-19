@@ -7,13 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="food-system" />
+        <module name="app" />
+        <module name="core" />
+        <module name="dataprovider" />
+        <module name="entrypoint" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="food-system" options="-parameters" />
+      <module name="app" options="-parameters" />
+      <module name="core" options="-parameters" />
+      <module name="dataprovider" options="-parameters" />
+      <module name="entrypoint" options="-parameters" />
+      <module name="food-system" options="" />
     </option>
   </component>
 </project>
